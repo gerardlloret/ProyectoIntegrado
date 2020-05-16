@@ -2,25 +2,28 @@ package modelo;
 
 import excepcion.Excepcion;
 import handler.Manager;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Equipo {
+    int idequipo;
     String nombre;
     Date fecha;
-    String ciudad;
+    Pais pais;
     int vacantes;
     String descripcion;
     int miembros;
     String email;
     Cuota cuota;
+    ArrayList<Juego> juegos = new ArrayList<>();
 
-    public Equipo(String nombre, Date fecha, String ciudad, String email) throws Excepcion {
+    public Equipo(String nombre, Date fecha, Pais pais, String email) throws Excepcion {
         this.nombre = nombre;
         if(nombre.length()<1||nombre.length()>20){
             throw new Excepcion(Excepcion.malFormatoNombre);
         }
         this.fecha = fecha;
-        this.ciudad = ciudad;
+        this.pais = pais;
         this.email = email;
         if(email.length()<1||email.length()>50){
             throw new Excepcion(Excepcion.malFormatoEmail);
@@ -30,6 +33,15 @@ public class Equipo {
         }
     }
 
+    //Segundo constructor con el id para cuando lea de la bbdd
+    public Equipo(int idequipo, String nombre, Date fecha, Pais pais, String email) throws Excepcion {
+        this.idequipo = idequipo;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.pais = pais;
+        this.email = email;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -46,12 +58,12 @@ public class Equipo {
         this.fecha = fecha;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public int getVacantes() {
@@ -93,6 +105,21 @@ public class Equipo {
     public void setCuota(Cuota cuota) {
         this.cuota = cuota;
     }
-    
-    
+
+    public int getIdequipo() {
+        return idequipo;
+    }
+
+    public void setIdequipo(int idequipo) {
+        this.idequipo = idequipo;
+    }
+
+    public void setJuegos(ArrayList<Juego> juegos) {
+        this.juegos = juegos;
+    }
+
+    public ArrayList<Juego> getJuegos() {
+        return juegos;
+    }
+      
 }

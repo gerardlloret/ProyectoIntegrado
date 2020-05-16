@@ -8,10 +8,10 @@ public class Excepcion extends Exception {
     public static final int malFormatoPrecio = 2;
     public static final int malFormatoEmail = 3;
     public static final int malFormatoEmail2 = 4;
-    /*public static final int actividadYaExiste = 5;
-    public static final int malFormatoComment = 6;
-    public static final int noHayNingunaActividad = 7;
-    public static final int noHayNingunRegistro = 8;
+    public static final int malFormatoPassword = 5;
+    public static final int malFormatoAlias = 6;
+    public static final int malFormatoDescripcion = 7;
+    /*public static final int noHayNingunRegistro = 8;
     public static final int noHayNingunRegistroUsuario = 9;
     public static final int noHayNingunaActividadUsuario = 10;
     public static final int noHayNingunRecordEseDia = 11;*/
@@ -32,15 +32,15 @@ public class Excepcion extends Exception {
                 return "El nombre debe tener de 1 a 50 caracteres";
             case 4:
                 return "El formato del email no es correcto";
-            /*case 5:
+            case 5:
                 return "Ya existe una actividad con ese nombre";
             case 6:
-                return "El commentario no puede tener mas de 200 caracteres";
+                return "El password debe tener de 1 a 20 caracteres";
             case 7:
-                return "No se ha creado ninguna actividad";
+                return "El alias debe tener de 1 a 20 caracteres";
             case 8:
-                return "No se ha realizado ningun registro";
-            case 9:
+                return "La descripcion debe tener de 1 a 200 caracteres";
+            /*case 9:
                 return "Este usuario aun no ha realizado ningun registro";
             case 10:
                 return "Este usuario aun no ha creado ninguna actividad";   
