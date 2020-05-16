@@ -4,11 +4,11 @@ package excepcion;
 public class Excepcion extends Exception {
     private int error = 0;
     //Declaramos estas variables para que al momento de lanzar el error sea mucho mas intuitivo
-    /*public static final int usuarioYaExiste = 1;
-    public static final int malFormatoRegistro = 2;
-    public static final int tipoActividadIncorrecta = 3;
-    public static final int malFormatoNombreActividad = 4;
-    public static final int actividadYaExiste = 5;
+    public static final int malFormatoNombre = 1;
+    public static final int malFormatoPrecio = 2;
+    public static final int malFormatoEmail = 3;
+    public static final int malFormatoEmail2 = 4;
+    /*public static final int actividadYaExiste = 5;
     public static final int malFormatoComment = 6;
     public static final int noHayNingunaActividad = 7;
     public static final int noHayNingunRegistro = 8;
@@ -24,15 +24,15 @@ public class Excepcion extends Exception {
     @Override
     public String getMessage() {
         switch(error){
-            /*case 1:
-                return "Ya existe un usuario con ese nombre";
+            case 1:
+                return "El nombre debe tener de 1 a 20 caracteres";
             case 2:
-                return "El nombre y el password deben tener de 1 a 10 caracteres";
+                return "El precio no puede ser menor a 1 o mas grande de 999";
             case 3:
-                return "Tipo de actividad incorrecta";
+                return "El nombre debe tener de 1 a 50 caracteres";
             case 4:
-                return "El nombre de una actividad debe tener de 1 a 45 caracteres";
-            case 5:
+                return "El formato del email no es correcto";
+            /*case 5:
                 return "Ya existe una actividad con ese nombre";
             case 6:
                 return "El commentario no puede tener mas de 200 caracteres";

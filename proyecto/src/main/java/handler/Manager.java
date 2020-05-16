@@ -3,6 +3,8 @@ package handler;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import persistencia.DAO;
 
 
@@ -43,5 +45,14 @@ public class Manager {
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
         String sqlDate = sdf.format(date);
         return sqlDate;
+    }
+    
+    public static boolean emailValido(String email){
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher mather = pattern.matcher(email);
+        if (mather.find() == true) {
+            return true;
+        }
+        return false;
     }
 }
