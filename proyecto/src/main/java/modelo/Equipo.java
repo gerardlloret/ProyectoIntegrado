@@ -8,6 +8,7 @@ import java.util.Date;
 public class Equipo {
     int idequipo;
     String nombre;
+    String password;
     Date fecha;
     Pais pais;
     int vacantes;
@@ -17,10 +18,14 @@ public class Equipo {
     Cuota cuota;
     ArrayList<Juego> juegos = new ArrayList<>();
 
-    public Equipo(String nombre, Date fecha, Pais pais, String email) throws Excepcion {
+    public Equipo(String nombre, String password, Date fecha, Pais pais, String email) throws Excepcion {
         this.nombre = nombre;
         if(nombre.length()<1||nombre.length()>20){
             throw new Excepcion(Excepcion.malFormatoNombre);
+        }
+        this.password = password;
+        if(password.length()<1||password.length()>20){
+            throw new Excepcion(Excepcion.malFormatoPassword);
         }
         this.fecha = fecha;
         this.pais = pais;
@@ -34,8 +39,9 @@ public class Equipo {
     }
 
     //Segundo constructor con el id para cuando lea de la bbdd
-    public Equipo(int idequipo, String nombre, Date fecha, Pais pais, String email) throws Excepcion {
+    public Equipo(int idequipo, String nombre, String Password, Date fecha, Pais pais, String email) throws Excepcion {
         this.idequipo = idequipo;
+        this.password = password;
         this.nombre = nombre;
         this.fecha = fecha;
         this.pais = pais;
@@ -48,6 +54,14 @@ public class Equipo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getFecha() {

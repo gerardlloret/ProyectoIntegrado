@@ -35,9 +35,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="etCorreo" max="32767" attributes="0"/>
-                          <Component id="etPassword" max="32767" attributes="0"/>
+                          <Component id="tfAlias" max="32767" attributes="0"/>
                           <Component id="btnRegistrarse" pref="119" max="32767" attributes="0"/>
+                          <Component id="jpPassword" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -51,12 +51,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="etCorreo" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="tfAlias" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="etPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jpPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnValidar" min="-2" max="-2" attributes="0"/>
@@ -73,7 +73,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Correo:"/>
+        <Property name="text" type="java.lang.String" value="Alias:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -81,9 +81,7 @@
         <Property name="text" type="java.lang.String" value="Password:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="etCorreo">
-    </Component>
-    <Component class="javax.swing.JTextField" name="etPassword">
+    <Component class="javax.swing.JTextField" name="tfAlias">
     </Component>
     <Component class="javax.swing.JButton" name="btnValidar">
       <Properties>
@@ -102,6 +100,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarseActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="jpPassword">
     </Component>
   </SubComponents>
 </Form>

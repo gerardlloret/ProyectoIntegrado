@@ -3,8 +3,10 @@ package vista;
 import excepcion.Excepcion;
 import handler.Manager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import modelo.Jugador;
 
 public class RegisterJugador extends javax.swing.JDialog {
@@ -12,6 +14,8 @@ public class RegisterJugador extends javax.swing.JDialog {
     public RegisterJugador(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        SimpleDateFormat model = new SimpleDateFormat("dd/MM/yyyy");
+        jsDate.setEditor(new JSpinner.DateEditor(jsDate, model.toPattern()));
     }
 
     /**
@@ -143,6 +147,9 @@ public class RegisterJugador extends javax.swing.JDialog {
         try {
             Date date = (Date) jsDate.getValue();
             Jugador j = new Jugador(tfNombre.getText(), String.valueOf(jpPassword.getPassword()), tfAlias.getText(), date,tfEmail.getText());
+            if(Manager.bbdd.jugadorExist(j.getAlias())||Manager.bbdd.equipoExist(j.getAlias())){
+                throw new Excepcion(Excepcion.esteAliasNoEstaDisponible);
+            }
             Manager.bbdd.insertJugador(j);
             JOptionPane.showMessageDialog(this, "Te has registrado correctamente", "Info", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException|Excepcion ex) {

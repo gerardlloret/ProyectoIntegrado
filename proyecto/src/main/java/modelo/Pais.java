@@ -13,6 +13,8 @@ public class Pais {
             throw new Excepcion(Excepcion.malFormatoNombre);
         }
     }
+    //Constructor vacio para el dao
+    public Pais(){}
 
     public int getIdpais() {
         return idpais;

@@ -17,15 +17,15 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        etCorreo = new javax.swing.JTextField();
-        etPassword = new javax.swing.JTextField();
+        tfAlias = new javax.swing.JTextField();
         btnValidar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnRegistrarse = new javax.swing.JButton();
+        jpPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Correo:");
+        jLabel1.setText("Alias:");
 
         jLabel2.setText("Password:");
 
@@ -55,9 +55,9 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(etCorreo)
-                            .addComponent(etPassword)
-                            .addComponent(btnRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))))
+                            .addComponent(tfAlias)
+                            .addComponent(btnRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(jpPassword))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -66,11 +66,11 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(etCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(etPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jpPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnValidar)
                 .addGap(18, 18, 18)
@@ -94,10 +94,10 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarse;
     private javax.swing.JButton btnValidar;
-    private javax.swing.JTextField etCorreo;
-    private javax.swing.JTextField etPassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPasswordField jpPassword;
+    private javax.swing.JTextField tfAlias;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,9 +11,9 @@ public class Excepcion extends Exception {
     public static final int malFormatoPassword = 5;
     public static final int malFormatoAlias = 6;
     public static final int malFormatoDescripcion = 7;
-    /*public static final int noHayNingunRegistro = 8;
-    public static final int noHayNingunRegistroUsuario = 9;
-    public static final int noHayNingunaActividadUsuario = 10;
+    public static final int esteAliasNoEstaDisponible = 8;
+    public static final int esteNombreNoEstaDisponible = 9;
+    /*public static final int noHayNingunaActividadUsuario = 10;
     public static final int noHayNingunRecordEseDia = 11;*/
         
     public Excepcion(int error) {
@@ -38,11 +38,11 @@ public class Excepcion extends Exception {
                 return "El alias debe tener de 1 a 20 caracteres";
             case 7:
                 return "La descripcion debe tener de 1 a 200 caracteres";
-            /*case 8:
-                return "La descripcion debe tener de 1 a 200 caracteres";
+            case 8:
+                return "Este alias no esta disponible";
             case 9:
-                return "Este usuario aun no ha realizado ningun registro";
-            case 10:
+                return "Este nombre no esta disponible";
+            /*case 10:
                 return "Este usuario aun no ha creado ninguna actividad";   
             case 11:
                 return "Ese dia no realizaste ninguna actividad";*/

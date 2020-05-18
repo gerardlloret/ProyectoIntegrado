@@ -35,6 +35,11 @@ public class RegisterType extends javax.swing.JDialog {
         });
 
         btnEquipo.setText("Equipo");
+        btnEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEquipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,9 +49,8 @@ public class RegisterType extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnEquipo, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
+                    .addComponent(btnJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -68,8 +72,13 @@ public class RegisterType extends javax.swing.JDialog {
         RegisterJugador registerJugador = new RegisterJugador(login, true);
         registerJugador.setLocationRelativeTo(null);
         registerJugador.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnJugadorActionPerformed
+
+    private void btnEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipoActionPerformed
+        RegisterEquipo registerEquipo = new RegisterEquipo(login, true);
+        registerEquipo.setLocationRelativeTo(null);
+        registerEquipo.setVisible(true);
+    }//GEN-LAST:event_btnEquipoActionPerformed
 
     
 
