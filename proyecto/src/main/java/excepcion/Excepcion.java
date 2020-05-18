@@ -29,18 +29,18 @@ public class Excepcion extends Exception {
             case 2:
                 return "El precio no puede ser menor a 1 o mas grande de 999";
             case 3:
-                return "El nombre debe tener de 1 a 50 caracteres";
+                return "El email debe tener de 1 a 50 caracteres";
             case 4:
                 return "El formato del email no es correcto";
             case 5:
-                return "Ya existe una actividad con ese nombre";
-            case 6:
                 return "El password debe tener de 1 a 20 caracteres";
-            case 7:
+            case 6:
                 return "El alias debe tener de 1 a 20 caracteres";
-            case 8:
+            case 7:
                 return "La descripcion debe tener de 1 a 200 caracteres";
-            /*case 9:
+            /*case 8:
+                return "La descripcion debe tener de 1 a 200 caracteres";
+            case 9:
                 return "Este usuario aun no ha realizado ningun registro";
             case 10:
                 return "Este usuario aun no ha creado ninguna actividad";   

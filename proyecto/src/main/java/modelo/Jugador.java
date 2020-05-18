@@ -23,11 +23,11 @@ public class Jugador {
             throw new Excepcion(Excepcion.malFormatoNombre);
         }
         this.password = password;
-        if(nombre.length()<1||nombre.length()>20){
+        if(password.length()<1||password.length()>20){
             throw new Excepcion(Excepcion.malFormatoPassword);
         }
         this.alias = alias;
-        if(nombre.length()<1||nombre.length()>20){
+        if(alias.length()<1||alias.length()>20){
             throw new Excepcion(Excepcion.malFormatoAlias);
         }
         this.fechanacimiento = fechanacimiento;

@@ -11,9 +11,9 @@ public class Main {
         //Conectamos con la base de datos y abrimos la pantalla del Login
         try{
             Manager.connectar();        
-            //login = new Login();
-            //login.setLocationRelativeTo(null);
-            //login.setVisible(true);
+            Login login = new Login();
+            login.setLocationRelativeTo(null);
+            login.setVisible(true);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
         }

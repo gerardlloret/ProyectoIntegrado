@@ -1,10 +1,13 @@
 package persistencia;
 
+import handler.Manager;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Jugador;
 
 
 public class DAO {
@@ -34,6 +37,18 @@ public class DAO {
     //BLOQUE 1: EXISTS
     //BLOQUE 2: RETURNS
     //BLOQUE 3: INSERTS
+    //Metodo para insertar un jugador
+    public void insertJugador(Jugador j) throws SQLException{
+        String insert = "insert into jugador values (null, ?, ?, ?, ?, ?, null);";
+        PreparedStatement ps = conexion.prepareStatement(insert);
+        ps.setString(1, j.getNombre());
+        ps.setString(2, j.getPassword());
+        ps.setString(3, j.getAlias());
+        ps.setString(4, Manager.DateToSqlDate(j.getFechanacimiento()));
+        ps.setString(5, j.getEmail());
+        ps.executeUpdate();
+        ps.close();
+    }
     //BLOQUE 4: UPDATES
     //BLOQUE 5: DELETES
     
