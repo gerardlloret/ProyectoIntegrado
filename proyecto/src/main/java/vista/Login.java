@@ -1,5 +1,10 @@
 package vista;
 
+import excepcion.Excepcion;
+import handler.Manager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -30,6 +35,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Password:");
 
         btnValidar.setText("Validar");
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("¿No tienes cuenta?");
 
@@ -89,7 +99,46 @@ public class Login extends javax.swing.JFrame {
         registerType.setVisible(true);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
+    private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
+        String tipo = "";
+        try {
+            if(Manager.bbdd.jugadorExist(tfAlias.getText())){
+                tipo = "jugador";
+            } else if (Manager.bbdd.equipoExist(tfAlias.getText())){
+                tipo = "equipo";
+            }
+            if(tipo.equalsIgnoreCase("")){
+                throw new Excepcion(Excepcion.noExisteUsuarioConEseNombre);
+            }    
+            if(!Manager.bbdd.login(tfAlias.getText(), tipo, String.valueOf(jpPassword.getPassword()))){
+                throw new Excepcion(Excepcion.passwordIncorrecto);
+            }
+            Manager.setUsuario(tfAlias.getText());
+            if(tipo.equalsIgnoreCase("jugador")){
+                abrirMenuJugador();
+            }else if(tipo.equalsIgnoreCase("equipo")){
+                abrirMenuEquipo();
+            }
+        } catch (SQLException|Excepcion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnValidarActionPerformed
+
+    public void abrirMenuJugador(){
+        MenuJugador menuJugador = new MenuJugador();
+        menuJugador.setTitle("Menu Jugador");
+        menuJugador.setLocationRelativeTo(null);
+        menuJugador.setVisible(true);
+        dispose();
+    }
     
+    public void abrirMenuEquipo(){
+        MenuEquipo menuEquipo = new MenuEquipo();
+        menuEquipo.setTitle("Menu Equipo");
+        menuEquipo.setLocationRelativeTo(null);
+        menuEquipo.setVisible(true);
+        dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarse;

@@ -13,8 +13,8 @@ public class Excepcion extends Exception {
     public static final int malFormatoDescripcion = 7;
     public static final int esteAliasNoEstaDisponible = 8;
     public static final int esteNombreNoEstaDisponible = 9;
-    /*public static final int noHayNingunaActividadUsuario = 10;
-    public static final int noHayNingunRecordEseDia = 11;*/
+    public static final int noExisteUsuarioConEseNombre = 10;
+    public static final int passwordIncorrecto = 11;
         
     public Excepcion(int error) {
         super();
@@ -42,10 +42,10 @@ public class Excepcion extends Exception {
                 return "Este alias no esta disponible";
             case 9:
                 return "Este nombre no esta disponible";
-            /*case 10:
-                return "Este usuario aun no ha creado ninguna actividad";   
+            case 10:
+                return "No existe ningun usuario con ese nombre";   
             case 11:
-                return "Ese dia no realizaste ninguna actividad";*/
+                return "Password Incorrecto";
         }
         return super.getMessage(); 
     }    

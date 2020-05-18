@@ -41,6 +41,25 @@ public class DAO {
     //He dividido los metodos de esta clase en 5 bloques, EXIST, RETURNS, INSERTS, UPDATES y DELETES
     
     //BLOQUE 1: EXISTS
+    public boolean login(String nombre, String tipo, String password)throws SQLException{
+        String select = "";
+        if(tipo.equalsIgnoreCase("jugador")){
+            select = "select * from jugador where alias='" + nombre + "' and password ='" + password + "'";
+        }else if(tipo.equalsIgnoreCase("equipo")){
+            select = "select * from equipo where nombre='" + nombre + "' and password ='" + password + "'";
+        }
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
+    
     //Metodo que devuelve true si ya existe un jugador con ese nombre
     public boolean jugadorExist(String alias)throws SQLException{
         String select = "select * from jugador where alias='" + alias + "'";
