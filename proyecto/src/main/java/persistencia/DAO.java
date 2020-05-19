@@ -311,49 +311,7 @@ public class DAO {
         rs.close();
         st.close();
         return ofertas;
-    }
-    //Metodo que devuelve un arrayList con todos las ofertas de un juego determinado
-    /*public ArrayList<Oferta> returnOfertasByJuegoId(int idjuego) throws SQLException, Excepcion, ParseException{
-        String query = "select * from oferta where idjuego='" + idjuego + "'";
-        Statement st = conexion.createStatement();
-        ResultSet rs = st.executeQuery(query);
-        ArrayList<Oferta> ofertas = new ArrayList<>();
-        while (rs.next()) {
-            Oferta o = new Oferta();
-            o.setIdoferta(rs.getInt("idoferta"));
-            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
-            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
-            o.setNombre(rs.getString("nombre"));
-            o.setDescripcion(rs.getString("descripcion"));
-            o.setCandidaturas(rs.getInt("candidaturas"));
-            o.setVacantes(rs.getInt("vacantes"));
-            ofertas.add(o);
-        }
-        rs.close();
-        st.close();
-        return ofertas;
-    }*/
-    //Metodo que devuelve un arrayList con todos las ofertas de un equipo determinado
-    /*public ArrayList<Oferta> returnOfertasByEquipoId(int idequipo) throws SQLException, Excepcion, ParseException{
-        String query = "select * from oferta where idequipo='" + idequipo + "'";
-        Statement st = conexion.createStatement();
-        ResultSet rs = st.executeQuery(query);
-        ArrayList<Oferta> ofertas = new ArrayList<>();
-        while (rs.next()) {
-            Oferta o = new Oferta();
-            o.setIdoferta(rs.getInt("idoferta"));
-            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
-            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
-            o.setNombre(rs.getString("nombre"));
-            o.setDescripcion(rs.getString("descripcion"));
-            o.setCandidaturas(rs.getInt("candidaturas"));
-            o.setVacantes(rs.getInt("vacantes"));
-            ofertas.add(o);
-        }
-        rs.close();
-        st.close();
-        return ofertas;
-    }*/
+    }   
     //Metodo que devuelve una arrayList de ofertas filtranndo dependiendo de los valores pasados
     public ArrayList<Oferta> returnOfertasFiltradas(int idequipo, int idjuego) throws SQLException, Excepcion, ParseException{
         String query;
