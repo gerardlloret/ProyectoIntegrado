@@ -181,6 +181,22 @@ public class DAO {
         rs.close();
         st.close();
         return j;
+    }
+    //Metodo que devuelve un juego pasado su id
+    public Juego returnJuegoById(int idjuego)throws SQLException, Excepcion{
+        String query = "select * from juego where idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Juego j = new Juego();      
+        if (rs.next()) {
+            j.setIdjuego(rs.getInt("idjuego"));
+            j.setNombre(rs.getString("nombre"));
+            j.setGenero(returnGeneroById(rs.getInt("idgenero")));
+            j.setPegi(returnPegiById(rs.getInt("idpegi")));
+        }
+        rs.close();
+        st.close();
+        return j;
     }  
     //Metodo que devuelve un arrayList con todos los juegos ordenados
     public ArrayList<Juego> returnJuegos() throws SQLException, Excepcion{
@@ -217,8 +233,127 @@ public class DAO {
         rs.close();
         st.close();
         return e;
-    } 
-    
+    }
+    //Metodo que devuelve un equipo pasado su id
+    public Equipo returnEquipoById(int idequipo)throws SQLException, Excepcion, ParseException{
+        String query = "select * from equipo where idequipo='" + idequipo + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Equipo e = new Equipo();      
+        if (rs.next()) {
+            e.setIdequipo(rs.getInt("idequipo"));
+            e.setNombre(rs.getString("nombre"));
+            e.setPassword(rs.getString("password"));
+            e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
+            e.setPais(returnPaisById(rs.getInt("idpais")));
+            e.setEmail(rs.getString("email"));
+        }
+        rs.close();
+        st.close();
+        return e;
+    }
+    //Metodo que devuelve un arrayList con todos los equipos ordenados
+    public ArrayList<Equipo> returnEquipos() throws SQLException, Excepcion, ParseException{
+        String query = "select * from equipo order by nombre";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Equipo> equipos = new ArrayList<>();
+        while (rs.next()) {
+            Equipo e = new Equipo();
+            e.setIdequipo(rs.getInt("idequipo"));
+            e.setNombre(rs.getString("nombre"));
+            e.setPassword(rs.getString("password"));
+            e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
+            e.setPais(returnPaisById(rs.getInt("idpais")));
+            e.setEmail(rs.getString("email"));
+            equipos.add(e);
+        }
+        rs.close();
+        st.close();
+        return equipos;
+    }
+    //Metodo que devuelve un equipo pasado su id
+    public Oferta returnOfertaById(int idoferta)throws SQLException, Excepcion, ParseException{
+        String query = "select * from oferta where idoferta='" + idoferta + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Oferta o = new Oferta();      
+        if (rs.next()) {
+            o.setIdoferta(rs.getInt("idoferta"));
+            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
+            o.setNombre(rs.getString("nombre"));
+            o.setDescripcion(rs.getString("descripcion"));
+            o.setCandidaturas(rs.getInt("candidaturas"));
+            o.setVacantes(rs.getInt("vacantes"));
+        }
+        rs.close();
+        st.close();
+        return o;
+    }
+    //Metodo que devuelve un arrayList con todos las ofertas
+    public ArrayList<Oferta> returnOfertas() throws SQLException, Excepcion, ParseException{
+        String query = "select * from oferta";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Oferta> ofertas = new ArrayList<>();
+        while (rs.next()) {
+            Oferta o = new Oferta();
+            o.setIdoferta(rs.getInt("idoferta"));
+            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
+            o.setNombre(rs.getString("nombre"));
+            o.setDescripcion(rs.getString("descripcion"));
+            o.setCandidaturas(rs.getInt("candidaturas"));
+            o.setVacantes(rs.getInt("vacantes"));
+            ofertas.add(o);
+        }
+        rs.close();
+        st.close();
+        return ofertas;
+    }
+    //Metodo que devuelve un arrayList con todos las ofertas de un juego determinado
+    public ArrayList<Oferta> returnOfertasByJuegoId(int idjuego) throws SQLException, Excepcion, ParseException{
+        String query = "select * from oferta where idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Oferta> ofertas = new ArrayList<>();
+        while (rs.next()) {
+            Oferta o = new Oferta();
+            o.setIdoferta(rs.getInt("idoferta"));
+            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
+            o.setNombre(rs.getString("nombre"));
+            o.setDescripcion(rs.getString("descripcion"));
+            o.setCandidaturas(rs.getInt("candidaturas"));
+            o.setVacantes(rs.getInt("vacantes"));
+            ofertas.add(o);
+        }
+        rs.close();
+        st.close();
+        return ofertas;
+    }
+    //Metodo que devuelve un arrayList con todos las ofertas de un equipo determinado
+    public ArrayList<Oferta> returnOfertasByEquipoId(int idequipo) throws SQLException, Excepcion, ParseException{
+        String query = "select * from oferta where idequipo='" + idequipo + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Oferta> ofertas = new ArrayList<>();
+        while (rs.next()) {
+            Oferta o = new Oferta();
+            o.setIdoferta(rs.getInt("idoferta"));
+            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
+            o.setNombre(rs.getString("nombre"));
+            o.setDescripcion(rs.getString("descripcion"));
+            o.setCandidaturas(rs.getInt("candidaturas"));
+            o.setVacantes(rs.getInt("vacantes"));
+            ofertas.add(o);
+        }
+        rs.close();
+        st.close();
+        return ofertas;
+    }
     //BLOQUE 3: INSERTS
     //Metodo para insertar un jugador
     public void insertJugador(Jugador j) throws SQLException{
