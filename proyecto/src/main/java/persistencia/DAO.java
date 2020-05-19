@@ -8,12 +8,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Equipo;
+import modelo.Genero;
+import modelo.Juego;
 import modelo.Jugador;
+import modelo.Oferta;
 import modelo.Pais;
+import modelo.Pegi;
 
 
 public class DAO {
@@ -102,9 +107,22 @@ public class DAO {
         rs.close();
         st.close();
         return p;
-    }
-    
-    //Metodo que devuelve un arrayList con todos los paises
+    }  
+    //Metodo que devuelve un pais pasado su id
+    public Pais returnPaisById(int idpais)throws SQLException, Excepcion{
+        String query = "select * from pais where idpais='" + idpais + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Pais p = new Pais();      
+        if (rs.next()) {
+            p.setIdpais(rs.getInt("idpais"));
+            p.setNombre(rs.getString("nombre"));
+        }
+        rs.close();
+        st.close();
+        return p;
+    }  
+    //Metodo que devuelve un arrayList con todos los paises ordenados
     public ArrayList<Pais> returnPaises() throws SQLException, Excepcion{
         String query = "select * from pais order by nombre";
         Statement st = conexion.createStatement();
@@ -120,6 +138,87 @@ public class DAO {
         st.close();
         return paises;
     }
+    //Metodo que devuelve el Pegi por su id
+    public Pegi returnPegiById(int idpegi)throws SQLException, Excepcion{
+        String query = "select * from pegi where idpegi='" + idpegi + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Pegi p = new Pegi();      
+        if (rs.next()) {
+            p.setIdpegi(rs.getInt("idpegi"));
+            p.setPegi(rs.getString("pegi"));
+        }
+        rs.close();
+        st.close();
+        return p;
+    }
+    //Metodo que devuelve el Pegi por su id
+    public Genero returnGeneroById(int idgenero)throws SQLException, Excepcion{
+        String query = "select * from genero where idgenero='" + idgenero + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Genero g = new Genero();      
+        if (rs.next()) {
+            g.setIdgenero(rs.getInt("idgenero"));
+            g.setGenero(rs.getString("genero"));
+        }
+        rs.close();
+        st.close();
+        return g;
+    }
+    //Metodo que devuelve un juego pasado su nombre
+    public Juego returnJuego(String nombre)throws SQLException, Excepcion{
+        String query = "select * from juego where nombre='" + nombre + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Juego j = new Juego();      
+        if (rs.next()) {
+            j.setIdjuego(rs.getInt("idjuego"));
+            j.setNombre(rs.getString("nombre"));
+            j.setGenero(returnGeneroById(rs.getInt("idgenero")));
+            j.setPegi(returnPegiById(rs.getInt("idpegi")));
+        }
+        rs.close();
+        st.close();
+        return j;
+    }  
+    //Metodo que devuelve un arrayList con todos los juegos ordenados
+    public ArrayList<Juego> returnJuegos() throws SQLException, Excepcion{
+        String query = "select * from juego order by nombre";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Juego> juegos = new ArrayList<>();
+        while (rs.next()) {
+            Juego j = new Juego();
+            j.setIdjuego(rs.getInt("idjuego"));
+            j.setNombre(rs.getString("nombre"));
+            j.setGenero(returnGeneroById(rs.getInt("idgenero")));
+            j.setPegi(returnPegiById(rs.getInt("idpegi")));
+            juegos.add(j);
+        }
+        rs.close();
+        st.close();
+        return juegos;
+    }
+    //Metodo que devuelve un equipo pasado su nombre
+    public Equipo returnEquipo(String nombre)throws SQLException, Excepcion, ParseException{
+        String query = "select * from equipo where nombre='" + nombre + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Equipo e = new Equipo();      
+        if (rs.next()) {
+            e.setIdequipo(rs.getInt("idequipo"));
+            e.setNombre(rs.getString("nombre"));
+            e.setPassword(rs.getString("password"));
+            e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
+            e.setPais(returnPaisById(rs.getInt("idpais")));
+            e.setEmail(rs.getString("email"));
+        }
+        rs.close();
+        st.close();
+        return e;
+    } 
+    
     //BLOQUE 3: INSERTS
     //Metodo para insertar un jugador
     public void insertJugador(Jugador j) throws SQLException{
@@ -142,6 +241,19 @@ public class DAO {
         ps.setString(3, Manager.DateToSqlDate(e.getFecha()));
         ps.setInt(4, e.getPais().getIdpais());
         ps.setString(5, e.getEmail());
+        ps.executeUpdate();
+        ps.close();
+    }
+    //Metodo para insertar un equipo
+    public void insertOferta(Oferta o) throws SQLException{
+        String insert = "insert into oferta values (null, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement ps = conexion.prepareStatement(insert);
+        ps.setInt(1, o.getEquipo().getIdequipo());
+        ps.setInt(2, o.getJuego().getIdjuego());
+        ps.setString(3, o.getNombre());
+        ps.setString(4, o.getDescripcion());
+        ps.setInt(5, o.getCandidaturas());
+        ps.setInt(6, o.getVacantes());
         ps.executeUpdate();
         ps.close();
     }

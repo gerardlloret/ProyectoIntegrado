@@ -38,15 +38,8 @@ public class Equipo {
         }
     }
 
-    //Segundo constructor con el id para cuando lea de la bbdd
-    public Equipo(int idequipo, String nombre, String Password, Date fecha, Pais pais, String email) throws Excepcion {
-        this.idequipo = idequipo;
-        this.password = password;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.pais = pais;
-        this.email = email;
-    }
+    
+    public Equipo(){}
     
     public String getNombre() {
         return nombre;

@@ -1,6 +1,7 @@
 package handler;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -45,6 +46,11 @@ public class Manager {
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
         String sqlDate = sdf.format(date);
         return sqlDate;
+    }
+    
+    public static Date SqlDateToDate(String sqlDate) throws ParseException{
+        Date date=new SimpleDateFormat("yyyy-MM-dd").parse(sqlDate); 
+        return date;
     }
     
     public static boolean emailValido(String email){

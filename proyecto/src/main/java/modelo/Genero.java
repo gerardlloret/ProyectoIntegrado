@@ -14,6 +14,8 @@ public class Genero {
         }
     }
 
+    public Genero(){}
+    
     public int getIdgenero() {
         return idgenero;
     }

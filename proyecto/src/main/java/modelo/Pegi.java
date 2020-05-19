@@ -13,6 +13,8 @@ public class Pegi {
             throw new Excepcion(Excepcion.malFormatoNombre);
         }
     }        
+    
+    public Pegi(){}
 
     public int getIdpegi() {
         return idpegi;

@@ -12,6 +12,8 @@ public class Juego {
         this.genero = genero;
         this.pegi = pegi;
     }
+    
+    public Juego(){}
 
     public int getIdjuego() {
         return idjuego;

@@ -16,10 +16,18 @@ public class MenuEquipo extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnCrearOferta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("MENU EQUIPO");
+
+        btnCrearOferta.setText("Crear Oferta");
+        btnCrearOferta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearOfertaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -27,7 +35,9 @@ public class MenuEquipo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnCrearOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                 .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -35,15 +45,24 @@ public class MenuEquipo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(btnCrearOferta)
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCrearOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearOfertaActionPerformed
+        CrearOferta crearOferta = new CrearOferta(this, true);
+        crearOferta.setLocationRelativeTo(null);
+        crearOferta.setVisible(true);
+    }//GEN-LAST:event_btnCrearOfertaActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCrearOferta;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
