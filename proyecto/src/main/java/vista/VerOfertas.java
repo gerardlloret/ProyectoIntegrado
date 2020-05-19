@@ -12,6 +12,7 @@ import modelo.Oferta;
 
 public class VerOfertas extends javax.swing.JDialog {
 
+    int posicion;
     ArrayList<Oferta> ofertasSeleccionadas;
     
     public VerOfertas(java.awt.Frame parent, boolean modal) {
@@ -85,8 +86,18 @@ public class VerOfertas extends javax.swing.JDialog {
         jScrollPane1.setViewportView(taDescripcion);
 
         btnAnterior.setText("<< Anterior");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
+            }
+        });
 
         btnSiguiente.setText("Siguiente>>");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,26 +200,43 @@ public class VerOfertas extends javax.swing.JDialog {
             String noFiltro = "-- Sin Filtro --";
             String filtroJuego = cbJuegos.getSelectedItem().toString();
             String filtroEquipo = cbEquipos.getSelectedItem().toString();
-            if((filtroJuego.equalsIgnoreCase(noFiltro)) && (filtroEquipo.equalsIgnoreCase(noFiltro))){
-                ofertasSeleccionadas = Manager.bbdd.returnOfertas();
-            }
-            if((!filtroJuego.equalsIgnoreCase(noFiltro)) && (filtroEquipo.equalsIgnoreCase(noFiltro))){
+            int idequipo = -1;
+            int idjuego = -1;
+            if(!filtroJuego.equalsIgnoreCase(noFiltro)){
                 Juego j = Manager.bbdd.returnJuego(filtroJuego);
-                ofertasSeleccionadas = Manager.bbdd.returnOfertasByJuegoId(j.getIdjuego());
+                idjuego = j.getIdjuego();
             }
-            if((filtroJuego.equalsIgnoreCase(noFiltro)) && (!filtroEquipo.equalsIgnoreCase(noFiltro))){
+            if(!filtroEquipo.equalsIgnoreCase(noFiltro)){
                 Equipo e = Manager.bbdd.returnEquipo(filtroEquipo);
-                ofertasSeleccionadas = Manager.bbdd.returnOfertasByEquipoId(e.getIdequipo());
+                idequipo = e.getIdequipo();
             }
-            if((!filtroJuego.equalsIgnoreCase(noFiltro)) && (!filtroEquipo.equalsIgnoreCase(noFiltro))){
-                Equipo e = Manager.bbdd.returnEquipo(filtroEquipo);
-                ofertasSeleccionadas = Manager.bbdd.returnOfertasByEquipoId(e.getIdequipo());
-            }
+            posicion = 0;
+            ofertasSeleccionadas = Manager.bbdd.returnOfertasFiltradas(idequipo, idjuego);
             gestionArrayOfertas();
         } catch (SQLException|Excepcion|ParseException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnFiltrarActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        //El boton anterior muestra la anterior oferta en el ArrayList y habilita el boton siguiente
+        posicion = posicion -1;
+        mostrarOfertas(ofertasSeleccionadas.get(posicion));
+        if(posicion==0){
+            btnAnterior.setEnabled(false);
+        }
+        btnSiguiente.setEnabled(true);
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        //El boton siguiente muestra la siguiente oferta en el ArrayList y habilita el boton anterior
+        posicion = posicion +1;
+        mostrarOfertas(ofertasSeleccionadas.get(posicion));
+        if(posicion==(ofertasSeleccionadas.size()-1)){
+            btnSiguiente.setEnabled(false);
+        }
+        btnAnterior.setEnabled(true);
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void start(){
         //Cargamos los combo box con los juegos y equipos
@@ -222,6 +250,7 @@ public class VerOfertas extends javax.swing.JDialog {
             //Al principio deshabilitamos los botones atras y siguiente
             btnAnterior.setEnabled(false);
             btnSiguiente.setEnabled(false);
+            posicion = 0;
             ofertasSeleccionadas = Manager.bbdd.returnOfertas();
             gestionArrayOfertas();
         } catch (SQLException|Excepcion|ParseException ex) {
