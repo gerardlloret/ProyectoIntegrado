@@ -394,6 +394,24 @@ public class DAO {
         st.close();
         return ofertas;
     }
+    //Metodo que devuelve un equipo pasado su nombre
+    public Jugador returnJugador(String alias)throws SQLException, Excepcion, ParseException{
+        String query = "select * from jugador where alias='" + alias + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Jugador j = new Jugador();      
+        if (rs.next()) {
+            j.setIdjugador(rs.getInt("idjugador"));
+            j.setNombre(rs.getString("nombre"));
+            j.setPassword(rs.getString("password"));
+            j.setAlias(rs.getString("alias"));
+            j.setFechanacimiento(Manager.SqlDateToDate(rs.getString("fechanacimiento")));
+            j.setEmail(rs.getString("email"));
+        }
+        rs.close();
+        st.close();
+        return j;
+    }
     //BLOQUE 3: INSERTS
     //Metodo para insertar un jugador
     public void insertJugador(Jugador j) throws SQLException{

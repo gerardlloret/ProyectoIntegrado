@@ -40,15 +40,7 @@ public class Jugador {
         }
     }
     
-    //Segundo constructor con el id para cuando lea de la bbdd
-    public Jugador(int idjugador, String nombre, String password, String alias, Date fechanacimiento, String email) throws Excepcion {
-        this.idjugador = idjugador;
-        this.nombre = nombre;
-        this.password = password;
-        this.alias = alias;
-        this.fechanacimiento = fechanacimiento;
-        this.email = email;
-    }    
+    public Jugador() {}    
 
     public int getIdjugador() {
         return idjugador;

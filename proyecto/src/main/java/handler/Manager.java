@@ -48,6 +48,13 @@ public class Manager {
         return sqlDate;
     }
     
+    //Recibe un date y devuelve un String con el formato dd/MM/YYYY
+    public static String DateToEuropeanDate(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+        String sqlDate = sdf.format(date);
+        return sqlDate;
+    }
+    
     public static Date SqlDateToDate(String sqlDate) throws ParseException{
         Date date=new SimpleDateFormat("yyyy-MM-dd").parse(sqlDate); 
         return date;
