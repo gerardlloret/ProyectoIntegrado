@@ -40,7 +40,7 @@ public class Excepcion extends Exception {
             case 6:
                 return "El alias debe tener de 1 a 20 caracteres";
             case 7:
-                return "La descripcion debe tener de 1 a 200 caracteres";
+                return "La descripcion no puede tener mas de 200 caracteres";
             case 8:
                 return "Este alias no esta disponible";
             case 9:

@@ -505,6 +505,20 @@ public class DAO {
         ps.executeUpdate();
         ps.close();        
     }
+    //Metodo para modificar un equipo
+    public void updateEquipo(Equipo e) throws SQLException {
+        String update = "update equipo set nombre=?,password=?,fecha=?,idpais=?,descripcion=?,email=? where idequipo=?";
+        PreparedStatement ps = conexion.prepareStatement(update);
+        ps.setString(1, e.getNombre());
+        ps.setString(2, e.getPassword());
+        ps.setString(3, Manager.DateToSqlDate(e.getFecha()));
+        ps.setInt(4, e.getPais().getIdpais());
+        ps.setString(5, e.getDescripcion());
+        ps.setString(6, e.getEmail());
+        ps.setInt(7, e.getIdequipo());
+        ps.executeUpdate();
+        ps.close();        
+    }
     //BLOQUE 5: DELETES
     
 }

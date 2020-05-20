@@ -10,9 +10,12 @@ import modelo.Jugador;
 
 public class PerfilEquipo extends javax.swing.JDialog {
 
+    public java.awt.Frame menuEquipo;
+    
     public PerfilEquipo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        menuEquipo = parent;
         showInfo();
     }
 
@@ -67,6 +70,11 @@ public class PerfilEquipo extends javax.swing.JDialog {
         });
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,6 +148,13 @@ public class PerfilEquipo extends javax.swing.JDialog {
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        EditarPerfilEquipo editarPerfilEquipo = new EditarPerfilEquipo(menuEquipo, true);
+        editarPerfilEquipo.setLocationRelativeTo(null);
+        editarPerfilEquipo.setVisible(true);
+        showInfo();
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void showInfo(){
         try {
