@@ -162,6 +162,7 @@ public class PerfilJugador extends javax.swing.JDialog {
         EditarPerfilJugador editarPerfilJugador = new EditarPerfilJugador(menuJugador, true);
         editarPerfilJugador.setLocationRelativeTo(null);
         editarPerfilJugador.setVisible(true);
+        showInfo();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void showInfo(){

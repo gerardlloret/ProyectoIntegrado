@@ -5,6 +5,7 @@ import handler.Manager;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import modelo.Jugador;
@@ -37,6 +38,8 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
         tfEmail = new javax.swing.JTextField();
         btnCerrar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -66,31 +69,40 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
             }
         });
 
+        jLabel6.setText("Password:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCerrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnGuardar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfNombre)
-                            .addComponent(tfAlias)
-                            .addComponent(jsDate, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(tfEmail))))
-                .addContainerGap(115, Short.MAX_VALUE))
+                        .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnCerrar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGuardar))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jsDate, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                                .addComponent(tfEmail)
+                                .addComponent(tfAlias)
+                                .addComponent(tfNombre)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,26 +110,30 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(tfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfAlias, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jsDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar)
                     .addComponent(btnGuardar))
-                .addGap(48, 48, 48))
+                .addContainerGap())
         );
 
         pack();
@@ -128,7 +144,8 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        
+        modificarDatos();
+        showInfo();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void showInfo(){
@@ -137,12 +154,60 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
             jsDate.setEditor(new JSpinner.DateEditor(jsDate, model.toPattern()));
             Jugador j = Manager.bbdd.returnJugador(Manager.getUsuario());
             tfNombre.setText(j.getNombre());
+            tfPassword.setText(j.getPassword());
             tfAlias.setText(j.getAlias());
             tfEmail.setText(j.getEmail());
             jsDate.setValue(j.getFechanacimiento());
         } catch (SQLException|Excepcion|ParseException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void modificarDatos(){
+        try {
+            Jugador j = Manager.bbdd.returnJugador(Manager.getUsuario());
+            if(!tfNombre.getText().equalsIgnoreCase(j.getNombre())){
+                if(tfNombre.getText().length()<1||tfNombre.getText().length()>20){
+                    throw new Excepcion(Excepcion.malFormatoNombre);
+                }
+            }
+            if(!tfPassword.getText().equalsIgnoreCase(j.getPassword())){
+                if(tfPassword.getText().length()<1||tfPassword.getText().length()>20){
+                    throw new Excepcion(Excepcion.malFormatoPassword);
+                }
+            }
+            if(!tfAlias.getText().equalsIgnoreCase(j.getAlias())){
+                if(tfAlias.getText().length()<1||tfAlias.getText().length()>20){
+                    throw new Excepcion(Excepcion.malFormatoAlias);
+                }
+                if(Manager.bbdd.jugadorExist(tfAlias.getText())||Manager.bbdd.equipoExist(tfAlias.getText())){
+                    throw new Excepcion(Excepcion.esteAliasNoEstaDisponible);
+                }
+            }
+            if(!tfEmail.getText().equalsIgnoreCase(j.getEmail())){
+                if(tfEmail.getText().length()<1||tfEmail.getText().length()>50){
+                    throw new Excepcion(Excepcion.malFormatoEmail);
+                }
+                if(!Manager.emailValido(tfEmail.getText())){
+                    throw new Excepcion(Excepcion.malFormatoEmail2);
+                }
+                if(Manager.bbdd.correoExist(tfEmail.getText())){
+                    throw new Excepcion(Excepcion.yaExisteCorreo);
+                }
+            }
+            j.setNombre(tfNombre.getText());
+            j.setPassword(tfPassword.getText());
+            j.setAlias(tfAlias.getText());
+            j.setEmail(tfEmail.getText());
+            Date date = (Date) jsDate.getValue();
+            j.setFechanacimiento(date);
+            Manager.setUsuario(j.getAlias());
+            Manager.bbdd.updateJugador(j);
+            JOptionPane.showMessageDialog(this, "Se han guardado los cambios", "Info", JOptionPane.INFORMATION_MESSAGE);
+        } catch (SQLException|Excepcion|ParseException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+            
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -153,9 +218,11 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JSpinner jsDate;
     private javax.swing.JTextField tfAlias;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPassword;
     // End of variables declaration//GEN-END:variables
 }

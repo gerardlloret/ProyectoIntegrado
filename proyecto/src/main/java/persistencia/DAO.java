@@ -492,6 +492,19 @@ public class DAO {
         ps.executeUpdate();
         ps.close();        
     }
+    //Metodo para modificar un jugador
+    public void updateJugador(Jugador j) throws SQLException {
+        String update = "update jugador set nombre=?,password=?,alias=?,fechanacimiento=?,email=? where idjugador=?";
+        PreparedStatement ps = conexion.prepareStatement(update);
+        ps.setString(1, j.getNombre());
+        ps.setString(2, j.getPassword());
+        ps.setString(3, j.getAlias());
+        ps.setString(4, Manager.DateToSqlDate(j.getFechanacimiento()));
+        ps.setString(5, j.getEmail());
+        ps.setInt(6, j.getIdjugador());
+        ps.executeUpdate();
+        ps.close();        
+    }
     //BLOQUE 5: DELETES
     
 }
