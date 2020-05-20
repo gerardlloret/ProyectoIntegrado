@@ -278,6 +278,8 @@ public class DAO {
             e.setPassword(rs.getString("password"));
             e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
             e.setPais(returnPaisById(rs.getInt("idpais")));
+            e.setDescripcion("descripcion");
+            e.setMiembros(rs.getInt("miembros"));
             e.setEmail(rs.getString("email"));
         }
         rs.close();
@@ -296,6 +298,8 @@ public class DAO {
             e.setPassword(rs.getString("password"));
             e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
             e.setPais(returnPaisById(rs.getInt("idpais")));
+            e.setDescripcion("descripcion");
+            e.setMiembros(rs.getInt("miembros"));
             e.setEmail(rs.getString("email"));
         }
         rs.close();
@@ -315,6 +319,8 @@ public class DAO {
             e.setPassword(rs.getString("password"));
             e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
             e.setPais(returnPaisById(rs.getInt("idpais")));
+            e.setDescripcion("descripcion");
+            e.setMiembros(rs.getInt("miembros"));
             e.setEmail(rs.getString("email"));
             equipos.add(e);
         }
@@ -394,7 +400,7 @@ public class DAO {
         st.close();
         return ofertas;
     }
-    //Metodo que devuelve un equipo pasado su nombre
+    //Metodo que devuelve un jugador pasado su nombre
     public Jugador returnJugador(String alias)throws SQLException, Excepcion, ParseException{
         String query = "select * from jugador where alias='" + alias + "'";
         Statement st = conexion.createStatement();
@@ -407,11 +413,28 @@ public class DAO {
             j.setAlias(rs.getString("alias"));
             j.setFechanacimiento(Manager.SqlDateToDate(rs.getString("fechanacimiento")));
             j.setEmail(rs.getString("email"));
+            j.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            j.setJuegos(returnJuegosByJugadorId(rs.getInt("idjugador")));
         }
         rs.close();
         st.close();
         return j;
     }
+    //Metodo que devuelve un ArrayList de los juegos de un jugador pasando su id
+    public ArrayList<Juego> returnJuegosByJugadorId(int idjugador)throws SQLException, Excepcion, ParseException{
+        String query = "select * from jugador_juego where idjugador='" + idjugador + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Juego> juegos = new ArrayList<>();             
+        if (rs.next()) {
+            Juego j = returnJuegoById(rs.getInt("idjuego"));
+            juegos.add(j);
+        }
+        rs.close();
+        st.close();
+        return juegos;
+    }
+    
     //BLOQUE 3: INSERTS
     //Metodo para insertar un jugador
     public void insertJugador(Jugador j) throws SQLException{

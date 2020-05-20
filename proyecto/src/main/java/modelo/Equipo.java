@@ -11,7 +11,6 @@ public class Equipo {
     String password;
     Date fecha;
     Pais pais;
-    int vacantes;
     String descripcion;
     int miembros;
     String email;
@@ -36,6 +35,7 @@ public class Equipo {
         if(!Manager.emailValido(email)){
             throw new Excepcion(Excepcion.malFormatoEmail2);
         }
+        this.miembros = 0;
     }
 
     
@@ -71,14 +71,6 @@ public class Equipo {
 
     public void setPais(Pais pais) {
         this.pais = pais;
-    }
-
-    public int getVacantes() {
-        return vacantes;
-    }
-
-    public void setVacantes(int vacantes) {
-        this.vacantes = vacantes;
     }
 
     public String getDescripcion() {
