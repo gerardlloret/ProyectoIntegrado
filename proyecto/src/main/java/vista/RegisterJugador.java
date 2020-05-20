@@ -150,6 +150,9 @@ public class RegisterJugador extends javax.swing.JDialog {
             if(Manager.bbdd.jugadorExist(j.getAlias())||Manager.bbdd.equipoExist(j.getAlias())){
                 throw new Excepcion(Excepcion.esteAliasNoEstaDisponible);
             }
+            if(Manager.bbdd.correoExist(j.getEmail())){
+                throw new Excepcion(Excepcion.yaExisteCorreo);
+            }
             Manager.bbdd.insertJugador(j);
             JOptionPane.showMessageDialog(this, "Te has registrado correctamente", "Info", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException|Excepcion ex) {

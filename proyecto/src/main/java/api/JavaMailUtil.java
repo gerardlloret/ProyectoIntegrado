@@ -14,7 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailUtil {
     
-    public static void sendMail(String recipient) throws MessagingException  {
+    public static void sendMail(String recipient, String newPassword) throws MessagingException  {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable","true");
@@ -22,7 +22,7 @@ public class JavaMailUtil {
         properties.put("mail.smtp.port", "587");
         
         String myAccountEmail = "gerardlloretep@gmail.com";
-        String password = "aquitupassword";
+        String password = "tuPasswordAqui";
         
         Session session = Session.getInstance(properties, new Authenticator(){           
             @Override
@@ -31,16 +31,16 @@ public class JavaMailUtil {
             }
         });
     
-        Message message = prepareMessage(session, myAccountEmail, recipient);
+        Message message = prepareMessage(session, myAccountEmail, recipient, newPassword);
         Transport.send(message);
     }
 
-    private static Message prepareMessage(Session session, String myAccountEmail, String recipient) throws AddressException, MessagingException {
+    private static Message prepareMessage(Session session, String myAccountEmail, String recipient, String newPassword) throws AddressException, MessagingException {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(myAccountEmail));
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
-        message.setSubject("Que tal");
-        message.setText("soy pascual");
+        message.setSubject("Regenerar Password");
+        message.setText("Usa este password para acceder: " + newPassword);
         return message;
     }
             

@@ -93,6 +93,56 @@ public class DAO {
         st.close();
         return false;
     }
+    //Metodo que devuelve true si un jugador o equipo tiene ese correo
+    public boolean correoExist(String email)throws SQLException{
+        String select = "select * from jugador where email='" + email + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        select = "select * from equipo where email='" + email + "'";
+        rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
+    //Metodo que devuelve true si ya existe un jugador con ese email
+    public boolean jugadorExistEmail(String email)throws SQLException{
+        String select = "select * from jugador where email='" + email + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
+    //Metodo que devuelve true si ya existe un jugador con ese email
+    public boolean equipoExistEmail(String email)throws SQLException{
+        String select = "select * from equipo where email='" + email + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
+    
     //BLOQUE 2: RETURNS
     //Metodo que devuelve un pais pasado su nombre
     public Pais returnPais(String nombre)throws SQLException, Excepcion{
@@ -383,6 +433,24 @@ public class DAO {
         ps.close();
     }
     //BLOQUE 4: UPDATES
+    //Metodo para modificar el password de un jugador
+    public void updateJugadorPassword(String password, String email) throws SQLException {
+        String update = "update jugador set password=? where email=?";
+        PreparedStatement ps = conexion.prepareStatement(update);
+        ps.setString(1, password);
+        ps.setString(2, email);
+        ps.executeUpdate();
+        ps.close();        
+    }
+    //Metodo para modificar el password de un equipo
+    public void updateEquipoPassword(String password, String email) throws SQLException {
+        String update = "update equipo set password=? where email=?";
+        PreparedStatement ps = conexion.prepareStatement(update);
+        ps.setString(1, password);
+        ps.setString(2, email);
+        ps.executeUpdate();
+        ps.close();        
+    }
     //BLOQUE 5: DELETES
     
 }

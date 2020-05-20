@@ -11,12 +11,12 @@ public class Main {
     public static void main(String[] args){   
         //Conectamos con la base de datos y abrimos la pantalla del Login
         try{
-            JavaMailUtil.sendMail("gerardlloreteij@gmail.com");
+            //JavaMailUtil.sendMail("gerardlloreteij@gmail.com");
             Manager.connectar();        
             Login login = new Login();
             login.setLocationRelativeTo(null);
             login.setVisible(true);
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,ex.getMessage(),"ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }

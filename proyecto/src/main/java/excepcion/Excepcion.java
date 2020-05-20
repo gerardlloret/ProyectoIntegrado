@@ -16,6 +16,8 @@ public class Excepcion extends Exception {
     public static final int noExisteUsuarioConEseNombre = 10;
     public static final int passwordIncorrecto = 11;
     public static final int noHayNingunaOferta = 12;
+    public static final int noExisteCorreo = 13;
+    public static final int yaExisteCorreo = 14;
         
     public Excepcion(int error) {
         super();
@@ -49,6 +51,10 @@ public class Excepcion extends Exception {
                 return "Password Incorrecto";
             case 12:
                 return "No hay ninguna oferta";
+            case 13:
+                return "No hay ningun usuario con ese email";
+            case 14:
+                return "ya existe un usuario con ese email";
         }
         return super.getMessage(); 
     }    
