@@ -18,6 +18,7 @@ public class MenuEquipo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnCrearOferta = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,6 +38,13 @@ public class MenuEquipo extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Perfil");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -44,8 +52,9 @@ public class MenuEquipo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                         .addComponent(btnCrearOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
                 .addContainerGap(208, Short.MAX_VALUE))
@@ -58,8 +67,10 @@ public class MenuEquipo extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnCrearOferta)
                 .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(btnLogOut)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,11 +89,18 @@ public class MenuEquipo extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PerfilEquipo perfilEquipo = new PerfilEquipo(this, true);
+        perfilEquipo.setLocationRelativeTo(null);
+        perfilEquipo.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearOferta;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

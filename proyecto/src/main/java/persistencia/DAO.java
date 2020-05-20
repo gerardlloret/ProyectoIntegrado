@@ -278,7 +278,7 @@ public class DAO {
             e.setPassword(rs.getString("password"));
             e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
             e.setPais(returnPaisById(rs.getInt("idpais")));
-            e.setDescripcion("descripcion");
+            e.setDescripcion(rs.getString("descripcion"));
             e.setMiembros(rs.getInt("miembros"));
             e.setEmail(rs.getString("email"));
         }
@@ -298,7 +298,7 @@ public class DAO {
             e.setPassword(rs.getString("password"));
             e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
             e.setPais(returnPaisById(rs.getInt("idpais")));
-            e.setDescripcion("descripcion");
+            e.setDescripcion(rs.getString("descripcion"));
             e.setMiembros(rs.getInt("miembros"));
             e.setEmail(rs.getString("email"));
         }
@@ -319,7 +319,7 @@ public class DAO {
             e.setPassword(rs.getString("password"));
             e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
             e.setPais(returnPaisById(rs.getInt("idpais")));
-            e.setDescripcion("descripcion");
+            e.setDescripcion(rs.getString("descripcion"));
             e.setMiembros(rs.getInt("miembros"));
             e.setEmail(rs.getString("email"));
             equipos.add(e);
