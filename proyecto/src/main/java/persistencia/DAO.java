@@ -420,6 +420,51 @@ public class DAO {
         st.close();
         return j;
     }
+    //Metodo que devuelve un arrayList con todos los jugadores
+    public ArrayList<Jugador> returnJugadores() throws SQLException, Excepcion, ParseException{
+        String query = "select * from jugador";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        while (rs.next()) {
+            Jugador j = new Jugador();
+            j.setIdjugador(rs.getInt("idjugador"));
+            j.setNombre(rs.getString("nombre"));
+            j.setPassword(rs.getString("password"));
+            j.setAlias(rs.getString("alias"));
+            j.setFechanacimiento(Manager.SqlDateToDate(rs.getString("fechanacimiento")));
+            j.setEmail(rs.getString("email"));
+            j.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            j.setJuegos(returnJuegosByJugadorId(rs.getInt("idjugador")));
+            jugadores.add(j);
+        }
+        rs.close();
+        st.close();
+        return jugadores;
+    }
+    
+    //Metodo que devuelve un arrayList con todos los jugadores que juegan a un juego
+    public ArrayList<Jugador> returnJugadoresByJuegoId(int idjuego) throws SQLException, Excepcion, ParseException{
+        String query = "SELECT * FROM jugador INNER JOIN jugador_juego ON jugador.idjugador=jugador_juego.idjugador WHERE jugador_juego.idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        while (rs.next()) {
+            Jugador j = new Jugador();
+            j.setIdjugador(rs.getInt("idjugador"));
+            j.setNombre(rs.getString("nombre"));
+            j.setPassword(rs.getString("password"));
+            j.setAlias(rs.getString("alias"));
+            j.setFechanacimiento(Manager.SqlDateToDate(rs.getString("fechanacimiento")));
+            j.setEmail(rs.getString("email"));
+            j.setEquipo(returnEquipoById(rs.getInt("idequipo")));
+            j.setJuegos(returnJuegosByJugadorId(rs.getInt("idjugador")));
+            jugadores.add(j);
+        }
+        rs.close();
+        st.close();
+        return jugadores;
+    }
     //Metodo que devuelve un ArrayList de los juegos de un jugador pasando su id
     public ArrayList<Juego> returnJuegosByJugadorId(int idjugador)throws SQLException, Excepcion, ParseException{
         String query = "select * from jugador_juego where idjugador='" + idjugador + "'";

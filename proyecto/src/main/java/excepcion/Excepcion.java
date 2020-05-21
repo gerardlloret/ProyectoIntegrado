@@ -18,7 +18,8 @@ public class Excepcion extends Exception {
     public static final int noHayNingunaOferta = 12;
     public static final int noExisteCorreo = 13;
     public static final int yaExisteCorreo = 14;
-        
+    public static final int noHayNingunJugador = 15;
+           
     public Excepcion(int error) {
         super();
         this.error = error;
@@ -55,6 +56,8 @@ public class Excepcion extends Exception {
                 return "No hay ningun usuario con ese email";
             case 14:
                 return "ya existe un usuario con ese email";
+            case 15:
+                return "No hay ningun jugador";
         }
         return super.getMessage(); 
     }    

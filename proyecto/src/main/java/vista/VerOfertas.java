@@ -238,9 +238,9 @@ public class VerOfertas extends javax.swing.JDialog {
         btnAnterior.setEnabled(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void start(){
-        //Cargamos los combo box con los juegos y equipos
+    private void start(){        
         try {
+            //Cargamos los combo box con los juegos y equipos
             for(Juego j : Manager.bbdd.returnJuegos()){
                 cbJuegos.addItem(j.getNombre());
             }
