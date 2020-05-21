@@ -499,7 +499,7 @@ public class DAO {
         Statement st = conexion.createStatement();
         ResultSet rs = st.executeQuery(query);
         ArrayList<Juego> juegos = new ArrayList<>();             
-        if (rs.next()) {
+        while (rs.next()) {
             Juego j = returnJuegoById(rs.getInt("idjuego"));
             juegos.add(j);
         }
@@ -513,7 +513,7 @@ public class DAO {
         Statement st = conexion.createStatement();
         ResultSet rs = st.executeQuery(query);
         ArrayList<Juego> juegos = new ArrayList<>();             
-        if (rs.next()) {
+        while (rs.next()) {
             Juego j = returnJuegoById(rs.getInt("idjuego"));
             juegos.add(j);
         }
