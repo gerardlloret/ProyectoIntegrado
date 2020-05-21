@@ -260,7 +260,6 @@ public class VerJugadores extends javax.swing.JDialog {
     private DefaultListModel modelList(ArrayList<Juego> juegos){
         DefaultListModel model = new DefaultListModel<>();
         for (Juego j : juegos){
-            //System.out.println(j.getNombre());
             model.addElement(j.getNombre());
         }
         return model;

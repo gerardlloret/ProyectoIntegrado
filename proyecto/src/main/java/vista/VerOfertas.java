@@ -14,10 +14,12 @@ public class VerOfertas extends javax.swing.JDialog {
 
     int posicion;
     ArrayList<Oferta> ofertasSeleccionadas;
+    public java.awt.Frame menuJugador;
     
     public VerOfertas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        menuJugador = parent;
         start();
     }
 
@@ -73,6 +75,13 @@ public class VerOfertas extends javax.swing.JDialog {
         jLabel4.setText("Oferta:");
 
         jLabel5.setText("Equipo:");
+
+        lblNombreEquipo.setForeground(new java.awt.Color(0, 51, 255));
+        lblNombreEquipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNombreEquipoMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("Juego:");
 
@@ -237,6 +246,18 @@ public class VerOfertas extends javax.swing.JDialog {
         }
         btnAnterior.setEnabled(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
+
+    private void lblNombreEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreEquipoMouseClicked
+        try{
+            if(Manager.bbdd.equipoExist(lblNombreEquipo.getText())){
+                DetalleEquipo detalleEquipo = new DetalleEquipo(menuJugador, true, lblNombreEquipo.getText());
+                detalleEquipo.setLocationRelativeTo(null);
+                detalleEquipo.setVisible(true);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_lblNombreEquipoMouseClicked
 
     private void start(){        
         try {
