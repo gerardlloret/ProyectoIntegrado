@@ -202,7 +202,21 @@ public class DAO {
         st.close();
         return p;
     }
-    //Metodo que devuelve el Pegi por su id
+    //Metodo que devuelve el Genero por su nombre
+    public Genero returnGenero(String genero)throws SQLException, Excepcion{
+        String query = "select * from genero where genero='" + genero + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Genero g = new Genero();      
+        if (rs.next()) {
+            g.setIdgenero(rs.getInt("idgenero"));
+            g.setGenero(rs.getString("genero"));
+        }
+        rs.close();
+        st.close();
+        return g;
+    }
+    //Metodo que devuelve el Genero por su id
     public Genero returnGeneroById(int idgenero)throws SQLException, Excepcion{
         String query = "select * from genero where idgenero='" + idgenero + "'";
         Statement st = conexion.createStatement();
@@ -479,7 +493,36 @@ public class DAO {
         st.close();
         return juegos;
     }
-    
+    //Metodo que devuelve un ArrayList de los juegos de un jugador pasando su id
+    public ArrayList<Juego> returnJuegosByGeneroId(int idgenero)throws SQLException, Excepcion, ParseException{
+        String query = "select * from juego where idgenero='" + idgenero + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Juego> juegos = new ArrayList<>();             
+        if (rs.next()) {
+            Juego j = returnJuegoById(rs.getInt("idjuego"));
+            juegos.add(j);
+        }
+        rs.close();
+        st.close();
+        return juegos;
+    }
+    //Metodo que devuelve un arrayList con todos los generos ordenados
+    public ArrayList<Genero> returnGeneros() throws SQLException, Excepcion{
+        String query = "select * from genero order by genero";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Genero> generos = new ArrayList<>();
+        while (rs.next()) {
+            Genero g = new Genero();
+            g.setIdgenero(rs.getInt("idgenero"));
+            g.setGenero(rs.getString("genero"));
+            generos.add(g);
+        }
+        rs.close();
+        st.close();
+        return generos;
+    }
     //BLOQUE 3: INSERTS
     //Metodo para insertar un jugador
     public void insertJugador(Jugador j) throws SQLException{

@@ -27,11 +27,12 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="btnPerfil" max="32767" attributes="0"/>
+                      <Component id="btnVerJuegos" max="32767" attributes="0"/>
                       <Component id="jButton1" max="32767" attributes="0"/>
                       <Component id="jLabel1" pref="173" max="32767" attributes="0"/>
+                      <Component id="btnLogOut" alignment="1" pref="173" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="btnLogOut" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
+                  <Component id="btnPerfil" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="217" max="32767" attributes="0"/>
           </Group>
@@ -45,10 +46,12 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnVerJuegos" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnPerfil" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnLogOut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="152" max="32767" attributes="0"/>
+              <EmptySpace pref="111" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,6 +84,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPerfilActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVerJuegos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver Juegos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerJuegosActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

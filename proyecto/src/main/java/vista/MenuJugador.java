@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.Juego;
 import modelo.Oferta;
 
 public class MenuJugador extends javax.swing.JFrame {
@@ -27,6 +28,7 @@ public class MenuJugador extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
+        btnVerJuegos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,6 +55,13 @@ public class MenuJugador extends javax.swing.JFrame {
             }
         });
 
+        btnVerJuegos.setText("Ver Juegos");
+        btnVerJuegos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerJuegosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -61,10 +70,11 @@ public class MenuJugador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVerJuegos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -75,10 +85,12 @@ public class MenuJugador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
+                .addComponent(btnVerJuegos)
+                .addGap(18, 18, 18)
                 .addComponent(btnPerfil)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut)
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,10 +124,26 @@ public class MenuJugador extends javax.swing.JFrame {
         perfilJugador.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
+    private void btnVerJuegosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerJuegosActionPerformed
+        //Comprobamos que exista alguna oferta
+        try{
+            ArrayList<Juego> juegos = Manager.bbdd.returnJuegos();
+            if(juegos.isEmpty()){
+                throw new Excepcion(Excepcion.noHayNingunJuego);
+            }
+            VerJuegos verJuegos = new VerJuegos(this, true);
+            verJuegos.setLocationRelativeTo(null);
+            verJuegos.setVisible(true);
+        }catch (SQLException|Excepcion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVerJuegosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnVerJuegos;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

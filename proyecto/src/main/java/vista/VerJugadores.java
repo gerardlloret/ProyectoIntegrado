@@ -243,7 +243,7 @@ public class VerJugadores extends javax.swing.JDialog {
     //Metodo para mostrar un jugador
     private void mostrarJugadores(Jugador j){
         lblNombre.setText(j.getNombre());
-        lblAlias.setText(j.getNombre());
+        lblAlias.setText(j.getAlias());
         lblFecha.setText(Manager.DateToEuropeanDate(j.getFechanacimiento()));
         jlJuegos.setModel(modelList(j.getJuegos()));
     }
