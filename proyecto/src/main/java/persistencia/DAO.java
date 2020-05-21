@@ -142,6 +142,20 @@ public class DAO {
         st.close();
         return false;
     }
+    //Metodo que devuelve true si ya existe ese jugador ya tiene ese juego
+    public boolean jugadorJuegoExist(int idjugador,int idjuego)throws SQLException{
+        String select = "select * from jugador_juego where idjugador='" + idjugador + "' and idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
     
     //BLOQUE 2: RETURNS
     //Metodo que devuelve un pais pasado su nombre
@@ -548,7 +562,7 @@ public class DAO {
         ps.executeUpdate();
         ps.close();
     }
-    //Metodo para insertar un equipo
+    //Metodo para insertar una oferta
     public void insertOferta(Oferta o) throws SQLException{
         String insert = "insert into oferta values (null, ?, ?, ?, ?, ?, ?);";
         PreparedStatement ps = conexion.prepareStatement(insert);
@@ -558,6 +572,15 @@ public class DAO {
         ps.setString(4, o.getDescripcion());
         ps.setInt(5, o.getCandidaturas());
         ps.setInt(6, o.getVacantes());
+        ps.executeUpdate();
+        ps.close();
+    }
+    //Metodo para insertar un juego de un jugador
+    public void insertJugadorJuego(int idjugador, int idjuego) throws SQLException{
+        String insert = "insert into jugador_juego values (?, ?);";
+        PreparedStatement ps = conexion.prepareStatement(insert);
+        ps.setInt(1, idjugador);
+        ps.setInt(2, idjuego);
         ps.executeUpdate();
         ps.close();
     }
@@ -608,5 +631,12 @@ public class DAO {
         ps.close();        
     }
     //BLOQUE 5: DELETES
+    //Metodo para borrar un juego de un jugador
+    public void deleteJuegoJugador(int idjugador, int idjuego ) throws SQLException, Excepcion {
+        String delete = "delete from jugador_juego where idjugador='" + idjugador + "' and idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(delete);
+        st.close();
+    }
     
 }
