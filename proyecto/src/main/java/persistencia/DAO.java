@@ -193,9 +193,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Pais> paises = new ArrayList<>();
         while (rs.next()) {
-            Pais p = new Pais();
-            p.setIdpais(rs.getInt("idpais"));
-            p.setNombre(rs.getString("nombre"));
+            Pais p = returnPaisById(rs.getInt("idpais"));
             paises.add(p);
         }
         rs.close();
@@ -283,11 +281,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Juego> juegos = new ArrayList<>();
         while (rs.next()) {
-            Juego j = new Juego();
-            j.setIdjuego(rs.getInt("idjuego"));
-            j.setNombre(rs.getString("nombre"));
-            j.setGenero(returnGeneroById(rs.getInt("idgenero")));
-            j.setPegi(returnPegiById(rs.getInt("idpegi")));
+            Juego j = returnJuegoById(rs.getInt("idjuego"));
             juegos.add(j);
         }
         rs.close();
@@ -341,15 +335,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Equipo> equipos = new ArrayList<>();
         while (rs.next()) {
-            Equipo e = new Equipo();
-            e.setIdequipo(rs.getInt("idequipo"));
-            e.setNombre(rs.getString("nombre"));
-            e.setPassword(rs.getString("password"));
-            e.setFecha(Manager.SqlDateToDate(rs.getString("fecha")));
-            e.setPais(returnPaisById(rs.getInt("idpais")));
-            e.setDescripcion(rs.getString("descripcion"));
-            e.setMiembros(rs.getInt("miembros"));
-            e.setEmail(rs.getString("email"));
+            Equipo e = returnEquipoById(rs.getInt("idequipo"));
             equipos.add(e);
         }
         rs.close();
@@ -382,14 +368,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Oferta> ofertas = new ArrayList<>();
         while (rs.next()) {
-            Oferta o = new Oferta();
-            o.setIdoferta(rs.getInt("idoferta"));
-            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
-            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
-            o.setNombre(rs.getString("nombre"));
-            o.setDescripcion(rs.getString("descripcion"));
-            o.setCandidaturas(rs.getInt("candidaturas"));
-            o.setVacantes(rs.getInt("vacantes"));
+            Oferta o = returnOfertaById(rs.getInt("idoferta"));
             ofertas.add(o);
         }
         rs.close();
@@ -414,14 +393,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Oferta> ofertas = new ArrayList<>();
         while (rs.next()) {
-            Oferta o = new Oferta();
-            o.setIdoferta(rs.getInt("idoferta"));
-            o.setEquipo(returnEquipoById(rs.getInt("idequipo")));
-            o.setJuego(returnJuegoById(rs.getInt("idjuego")));
-            o.setNombre(rs.getString("nombre"));
-            o.setDescripcion(rs.getString("descripcion"));
-            o.setCandidaturas(rs.getInt("candidaturas"));
-            o.setVacantes(rs.getInt("vacantes"));
+            Oferta o = returnOfertaById(rs.getInt("idoferta"));
             ofertas.add(o);
         }
         rs.close();
@@ -455,15 +427,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Jugador> jugadores = new ArrayList<>();
         while (rs.next()) {
-            Jugador j = new Jugador();
-            j.setIdjugador(rs.getInt("idjugador"));
-            j.setNombre(rs.getString("nombre"));
-            j.setPassword(rs.getString("password"));
-            j.setAlias(rs.getString("alias"));
-            j.setFechanacimiento(Manager.SqlDateToDate(rs.getString("fechanacimiento")));
-            j.setEmail(rs.getString("email"));
-            j.setEquipo(returnEquipoById(rs.getInt("idequipo")));
-            j.setJuegos(returnJuegosByJugadorId(rs.getInt("idjugador")));
+            Jugador j = returnJugador(rs.getString("alias"));
             jugadores.add(j);
         }
         rs.close();
@@ -478,15 +442,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Jugador> jugadores = new ArrayList<>();
         while (rs.next()) {
-            Jugador j = new Jugador();
-            j.setIdjugador(rs.getInt("idjugador"));
-            j.setNombre(rs.getString("nombre"));
-            j.setPassword(rs.getString("password"));
-            j.setAlias(rs.getString("alias"));
-            j.setFechanacimiento(Manager.SqlDateToDate(rs.getString("fechanacimiento")));
-            j.setEmail(rs.getString("email"));
-            j.setEquipo(returnEquipoById(rs.getInt("idequipo")));
-            j.setJuegos(returnJuegosByJugadorId(rs.getInt("idjugador")));
+            Jugador j = returnJugador(rs.getString("alias"));
             jugadores.add(j);
         }
         rs.close();
@@ -528,9 +484,7 @@ public class DAO {
         ResultSet rs = st.executeQuery(query);
         ArrayList<Genero> generos = new ArrayList<>();
         while (rs.next()) {
-            Genero g = new Genero();
-            g.setIdgenero(rs.getInt("idgenero"));
-            g.setGenero(rs.getString("genero"));
+            Genero g = returnGeneroById(rs.getInt("idgenero"));
             generos.add(g);
         }
         rs.close();
