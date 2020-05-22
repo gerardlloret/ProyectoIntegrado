@@ -20,7 +20,8 @@ public class Excepcion extends Exception {
     public static final int yaExisteCorreo = 14;
     public static final int noHayNingunJugador = 15;
     public static final int noHayNingunJuego = 16;
-    public static final int noHayNingunEquipo = 16;
+    public static final int noHayNingunEquipo = 17;
+    public static final int noHayPostulaciones = 18;
            
     public Excepcion(int error) {
         super();
@@ -64,6 +65,8 @@ public class Excepcion extends Exception {
                 return "No hay ningun juego";
             case 17:
                 return "No hay ningun equipo";
+            case 18:
+                return "No te has postulado a ninguna oferta";
         }
         return super.getMessage(); 
     }    

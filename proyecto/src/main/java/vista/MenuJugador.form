@@ -23,26 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="btnVerEquipos" pref="173" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jButton1" max="32767" attributes="0"/>
-                              <Component id="jLabel1" pref="173" max="32767" attributes="0"/>
-                              <Component id="btnLogOut" alignment="1" pref="173" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="btnPerfil" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                          <Component id="btnVerJuegos" alignment="0" min="-2" pref="173" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="btnVerEquipos" max="32767" attributes="0"/>
+                  <Component id="btnVerJuegos" alignment="1" pref="173" max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jLabel1" alignment="1" pref="173" max="32767" attributes="0"/>
+                      <Component id="btnLogOut" alignment="1" pref="173" max="32767" attributes="0"/>
+                      <Component id="btnPerfil" alignment="0" pref="173" max="32767" attributes="0"/>
+                      <Component id="btnVerPostulaciones" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="217" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,6 +48,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnVerPostulaciones" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnVerEquipos" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnVerJuegos" min="-2" max="-2" attributes="0"/>
@@ -61,7 +57,7 @@
               <Component id="btnPerfil" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnLogOut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="70" max="32767" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -110,6 +106,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerEquiposActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVerPostulaciones">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver Postulaciones"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerPostulacionesActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

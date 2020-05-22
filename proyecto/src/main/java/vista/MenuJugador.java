@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Equipo;
 import modelo.Juego;
+import modelo.Jugador;
 import modelo.Oferta;
 
 public class MenuJugador extends javax.swing.JFrame {
@@ -31,6 +32,7 @@ public class MenuJugador extends javax.swing.JFrame {
         btnPerfil = new javax.swing.JButton();
         btnVerJuegos = new javax.swing.JButton();
         btnVerEquipos = new javax.swing.JButton();
+        btnVerPostulaciones = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,25 +73,29 @@ public class MenuJugador extends javax.swing.JFrame {
             }
         });
 
+        btnVerPostulaciones.setText("Ver Postulaciones");
+        btnVerPostulaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerPostulacionesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnVerEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addGap(217, 217, 217))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                                .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                            .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVerJuegos, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnVerEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerJuegos, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                        .addComponent(btnVerPostulaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,6 +105,8 @@ public class MenuJugador extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
+                .addComponent(btnVerPostulaciones)
+                .addGap(18, 18, 18)
                 .addComponent(btnVerEquipos)
                 .addGap(18, 18, 18)
                 .addComponent(btnVerJuegos)
@@ -106,7 +114,7 @@ public class MenuJugador extends javax.swing.JFrame {
                 .addComponent(btnPerfil)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,12 +178,27 @@ public class MenuJugador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVerEquiposActionPerformed
 
+    private void btnVerPostulacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerPostulacionesActionPerformed
+        try{
+            Jugador j = Manager.bbdd.returnJugador(Manager.getUsuario());
+            if(j.getOfertas().isEmpty()){
+                throw new Excepcion(Excepcion.noHayPostulaciones);
+            }
+            VerPostulaciones verPostulaciones = new VerPostulaciones(this, true);
+            verPostulaciones.setLocationRelativeTo(null);
+            verPostulaciones.setVisible(true);
+        }catch (SQLException|Excepcion|ParseException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVerPostulacionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JButton btnVerEquipos;
     private javax.swing.JButton btnVerJuegos;
+    private javax.swing.JButton btnVerPostulaciones;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

@@ -429,6 +429,7 @@ public class DAO {
             j.setEmail(rs.getString("email"));
             j.setEquipo(returnEquipoById(rs.getInt("idequipo")));
             j.setJuegos(returnJuegosByJugadorId(rs.getInt("idjugador")));
+            j.setOfertas(returnOfertasByJugadorId(rs.getInt("idjugador")));
         }
         rs.close();
         st.close();
@@ -476,6 +477,20 @@ public class DAO {
         rs.close();
         st.close();
         return juegos;
+    }
+    //Metodo que devuelve un ArrayList de las ofertas de un jugador pasando su id
+    public ArrayList<Oferta> returnOfertasByJugadorId(int idjugador)throws SQLException, Excepcion, ParseException{
+        String query = "select * from jugador_oferta where idjugador='" + idjugador + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Oferta> ofertas = new ArrayList<>();             
+        while (rs.next()) {
+            Oferta o = returnOfertaById(rs.getInt("idoferta"));
+            ofertas.add(o);
+        }
+        rs.close();
+        st.close();
+        return ofertas;
     }
     //Metodo que devuelve un ArrayList de los juegos de un jugador pasando su id
     public ArrayList<Juego> returnJuegosByGeneroId(int idgenero)throws SQLException, Excepcion, ParseException{
@@ -611,6 +626,13 @@ public class DAO {
     //Metodo para borrar un juego de un jugador
     public void deleteJuegoJugador(int idjugador, int idjuego ) throws SQLException, Excepcion {
         String delete = "delete from jugador_juego where idjugador='" + idjugador + "' and idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(delete);
+        st.close();
+    }
+    //Metodo para borrar una oferta de un jugador
+    public void deleteOfertaJugador(int idjugador, int idoferta ) throws SQLException, Excepcion {
+        String delete = "delete from jugador_oferta where idjugador='" + idjugador + "' and idoferta='" + idoferta + "'";
         Statement st = conexion.createStatement();
         st.executeUpdate(delete);
         st.close();
