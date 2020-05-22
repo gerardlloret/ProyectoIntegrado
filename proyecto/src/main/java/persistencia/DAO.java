@@ -448,11 +448,24 @@ public class DAO {
         rs.close();
         st.close();
         return jugadores;
-    }
-    
+    }   
     //Metodo que devuelve un arrayList con todos los jugadores que juegan a un juego
     public ArrayList<Jugador> returnJugadoresByJuegoId(int idjuego) throws SQLException, Excepcion, ParseException{
         String query = "SELECT * FROM jugador INNER JOIN jugador_juego ON jugador.idjugador=jugador_juego.idjugador WHERE jugador_juego.idjuego='" + idjuego + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        while (rs.next()) {
+            Jugador j = returnJugador(rs.getString("alias"));
+            jugadores.add(j);
+        }
+        rs.close();
+        st.close();
+        return jugadores;
+    }
+    //Metodo que devuelve un arrayList con todos los jugadores que se han postulado en una oferta
+    public ArrayList<Jugador> returnJugadoresByOfertaId(int idoferta) throws SQLException, Excepcion, ParseException{
+        String query = "SELECT * FROM jugador INNER JOIN jugador_oferta ON jugador.idjugador=jugador_oferta.idjugador WHERE jugador_oferta.idoferta='" + idoferta + "'";
         Statement st = conexion.createStatement();
         ResultSet rs = st.executeQuery(query);
         ArrayList<Jugador> jugadores = new ArrayList<>();

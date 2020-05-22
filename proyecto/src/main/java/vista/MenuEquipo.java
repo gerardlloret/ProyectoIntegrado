@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import modelo.Equipo;
 import modelo.Jugador;
 import modelo.Oferta;
 
@@ -29,6 +30,7 @@ public class MenuEquipo extends javax.swing.JFrame {
         btnLogOut = new javax.swing.JButton();
         btnPerfil = new javax.swing.JButton();
         btnVerJugadores = new javax.swing.JButton();
+        btnVerCandidatos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,19 +64,27 @@ public class MenuEquipo extends javax.swing.JFrame {
             }
         });
 
+        btnVerCandidatos.setText("Ver Candidatos");
+        btnVerCandidatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerCandidatosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnVerCandidatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(btnVerJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                         .addComponent(btnCrearOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                 .addContainerGap(208, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,12 +95,14 @@ public class MenuEquipo extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(btnCrearOferta)
                 .addGap(18, 18, 18)
+                .addComponent(btnVerCandidatos)
+                .addGap(18, 18, 18)
                 .addComponent(btnVerJugadores)
                 .addGap(18, 18, 18)
                 .addComponent(btnPerfil)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,12 +142,29 @@ public class MenuEquipo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVerJugadoresActionPerformed
 
+    private void btnVerCandidatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCandidatosActionPerformed
+        //Comprobamos que el equipo haya creado alguna oferta
+        try{
+            Equipo e = Manager.bbdd.returnEquipo(Manager.getUsuario());
+            ArrayList<Oferta> ofertas = Manager.bbdd.returnOfertasFiltradas(e.getIdequipo(), -1);
+            if(ofertas.isEmpty()){
+                throw new Excepcion(Excepcion.noHasCreadoNingunaOferta);
+            }
+            VerCandidatosOfertas verCandidatosOfertas = new VerCandidatosOfertas(this, true);
+            verCandidatosOfertas.setLocationRelativeTo(null);
+            verCandidatosOfertas.setVisible(true);
+        }catch (SQLException|Excepcion|ParseException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVerCandidatosActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCrearOferta;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnVerCandidatos;
     private javax.swing.JButton btnVerJugadores;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

@@ -22,6 +22,7 @@ public class Excepcion extends Exception {
     public static final int noHayNingunJuego = 16;
     public static final int noHayNingunEquipo = 17;
     public static final int noHayPostulaciones = 18;
+    public static final int noHasCreadoNingunaOferta = 19;
            
     public Excepcion(int error) {
         super();
@@ -44,7 +45,7 @@ public class Excepcion extends Exception {
             case 6:
                 return "El alias debe tener de 1 a 20 caracteres";
             case 7:
-                return "La descripcion no puede tener mas de 200 caracteres";
+                return "La descripcion debe tener de 1 a 200 caracteres";
             case 8:
                 return "Este alias no esta disponible";
             case 9:
@@ -67,6 +68,8 @@ public class Excepcion extends Exception {
                 return "No hay ningun equipo";
             case 18:
                 return "No te has postulado a ninguna oferta";
+            case 19:
+                return "No has creado ninguna oferta";                
         }
         return super.getMessage(); 
     }    
