@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Equipo;
 import modelo.Juego;
+import modelo.Jugador;
 import modelo.Oferta;
 
 public class VerOfertas extends javax.swing.JDialog {
@@ -110,6 +111,11 @@ public class VerOfertas extends javax.swing.JDialog {
         });
 
         btnCandidatura.setText("Postularse");
+        btnCandidatura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCandidaturaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,6 +271,17 @@ public class VerOfertas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lblNombreEquipoMouseClicked
 
+    private void btnCandidaturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCandidaturaActionPerformed
+        try {
+            Oferta oferta = ofertasSeleccionadas.get(posicion);
+            Jugador jugador = Manager.bbdd.returnJugador(Manager.getUsuario());
+            Manager.bbdd.insertJugadorOferta(jugador.getIdjugador(), oferta.getIdoferta());
+            estadoBotonCandidatura();
+        } catch (SQLException|Excepcion|ParseException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnCandidaturaActionPerformed
+
     private void start(){        
         try {
             //Cargamos los combo box con los juegos y equipos
@@ -305,18 +322,33 @@ public class VerOfertas extends javax.swing.JDialog {
         lblNombreJuego.setText(o.getJuego().getNombre());
         lblVacantes.setText(String.valueOf(o.getVacantes()));
         taDescripcion.setText(o.getDescripcion());
+        estadoBotonCandidatura();
     }
     
     private void resetOfertas(){
+        btnCandidatura.setEnabled(false);
         String guiones = "----------";
         lblNombreOferta.setText(guiones);
         lblNombreEquipo.setText(guiones);
         lblNombreJuego.setText(guiones);
         lblVacantes.setText(guiones);
-        taDescripcion.setText("");
+        taDescripcion.setText("");        
     }
     
-
+    private void estadoBotonCandidatura(){
+        try {    
+            Oferta oferta = ofertasSeleccionadas.get(posicion);
+            Jugador jugador = Manager.bbdd.returnJugador(Manager.getUsuario());
+            if(Manager.bbdd.jugadorOfertaExist(jugador.getIdjugador(), oferta.getIdoferta())){
+                btnCandidatura.setEnabled(false);
+            }else{
+                btnCandidatura.setEnabled(true);
+            }
+        } catch (SQLException|Excepcion|ParseException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }   
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
     private javax.swing.JButton btnCandidatura;

@@ -229,8 +229,7 @@ public class VerJuegos extends javax.swing.JDialog {
             Juego juego = juegosSeleccionados.get(posicion);
             Jugador jugador = Manager.bbdd.returnJugador(Manager.getUsuario());
             Manager.bbdd.insertJugadorJuego(jugador.getIdjugador(), juego.getIdjuego());
-            btnAdd.setEnabled(false);
-            btnQuitar.setEnabled(true);
+            estadoBotonesAddQuitar();
         } catch (SQLException|Excepcion|ParseException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -241,8 +240,7 @@ public class VerJuegos extends javax.swing.JDialog {
             Juego juego = juegosSeleccionados.get(posicion);
             Jugador jugador = Manager.bbdd.returnJugador(Manager.getUsuario());
             Manager.bbdd.deleteJuegoJugador(jugador.getIdjugador(), juego.getIdjuego());
-            btnAdd.setEnabled(true);
-            btnQuitar.setEnabled(false);
+            estadoBotonesAddQuitar();
         } catch (SQLException|Excepcion|ParseException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }

@@ -156,6 +156,20 @@ public class DAO {
         st.close();
         return false;
     }
+    //Metodo que devuelve true si ya existe ese jugador ya ha dejado candidatura en esa oferta
+    public boolean jugadorOfertaExist(int idjugador,int idoferta)throws SQLException{
+        String select = "select * from jugador_oferta where idjugador='" + idjugador + "' and idoferta='" + idoferta + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
     
     //BLOQUE 2: RETURNS
     //Metodo que devuelve un pais pasado su nombre
@@ -535,6 +549,15 @@ public class DAO {
         PreparedStatement ps = conexion.prepareStatement(insert);
         ps.setInt(1, idjugador);
         ps.setInt(2, idjuego);
+        ps.executeUpdate();
+        ps.close();
+    }
+    //Metodo para insertar una oferta en un jugador
+    public void insertJugadorOferta(int idjugador, int idoferta) throws SQLException{
+        String insert = "insert into jugador_oferta values (?, ?);";
+        PreparedStatement ps = conexion.prepareStatement(insert);
+        ps.setInt(1, idjugador);
+        ps.setInt(2, idoferta);
         ps.executeUpdate();
         ps.close();
     }
