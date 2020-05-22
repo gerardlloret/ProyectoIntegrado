@@ -170,7 +170,20 @@ public class DAO {
         st.close();
         return false;
     }
-    
+    //Metodo que devuelve true si ya existe una oferta con ese nombre para un mismo equipo
+    public boolean nombreOfertaEquipoExist(int idequipo,String nombre)throws SQLException{
+        String select = "select * from oferta where idequipo='" + idequipo + "' and nombre='" + nombre + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(select);
+        if(rs.next()){
+            rs.close();
+            st.close();
+            return true;
+        }
+        rs.close();
+        st.close();
+        return false;
+    }
     //BLOQUE 2: RETURNS
     //Metodo que devuelve un pais pasado su nombre
     public Pais returnPais(String nombre)throws SQLException, Excepcion{
@@ -356,7 +369,7 @@ public class DAO {
         st.close();
         return equipos;
     }
-    //Metodo que devuelve un equipo pasado su id
+    //Metodo que devuelve una oferta pasado su id
     public Oferta returnOfertaById(int idoferta)throws SQLException, Excepcion, ParseException{
         String query = "select * from oferta where idoferta='" + idoferta + "'";
         Statement st = conexion.createStatement();
@@ -370,6 +383,19 @@ public class DAO {
             o.setDescripcion(rs.getString("descripcion"));
             o.setCandidaturas(rs.getInt("candidaturas"));
             o.setVacantes(rs.getInt("vacantes"));
+        }
+        rs.close();
+        st.close();
+        return o;
+    }
+    //Metodo que devuelve una oferta pasado su nombre y el id del equipo
+    public Oferta returnOfertaByNombreEquipoId(int idequipo, String nombre)throws SQLException, Excepcion, ParseException{
+        String query = "select * from oferta where idequipo='" + idequipo + "' and nombre='" + nombre + "'";
+        Statement st = conexion.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        Oferta o = new Oferta();      
+        if (rs.next()) {
+            o = returnOfertaById(rs.getInt("idoferta"));
         }
         rs.close();
         st.close();

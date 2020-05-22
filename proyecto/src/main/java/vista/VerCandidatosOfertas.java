@@ -16,7 +16,6 @@ public class VerCandidatosOfertas extends javax.swing.JDialog {
 
     int posicion;
     ArrayList<Jugador> jugadoresSeleccionados;
-    ArrayList<Oferta> ofertasSeleccionadas;
     
     public VerCandidatosOfertas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -183,7 +182,8 @@ public class VerCandidatosOfertas extends javax.swing.JDialog {
             //Cuando le da al boton de seleccionar deshabilitamos los botones
             btnAnterior.setEnabled(false);
             btnSiguiente.setEnabled(false);
-            Oferta o = ofertasSeleccionadas.get(cbOfertas.getSelectedIndex());
+            Equipo e = Manager.bbdd.returnEquipo(Manager.getUsuario());
+            Oferta o = Manager.bbdd.returnOfertaByNombreEquipoId(e.getIdequipo(),cbOfertas.getSelectedItem().toString());
             jugadoresSeleccionados = Manager.bbdd.returnJugadoresByOfertaId(o.getIdoferta());
             gestionArrayJugadores();
         } catch (SQLException|Excepcion|ParseException ex) {
@@ -215,9 +215,9 @@ public class VerCandidatosOfertas extends javax.swing.JDialog {
     private void start(){        
         try {
             Equipo e = Manager.bbdd.returnEquipo(Manager.getUsuario());
-            ofertasSeleccionadas = Manager.bbdd.returnOfertasFiltradas(e.getIdequipo(), -1);
+            ArrayList<Oferta> ofertas = Manager.bbdd.returnOfertasFiltradas(e.getIdequipo(), -1);
             //Cargamos los combo box con las ofertas            
-            for(Oferta o : ofertasSeleccionadas){
+            for(Oferta o : ofertas){
                 cbOfertas.addItem(o.getNombre());
             }
             //Al principio deshabilitamos los botones atras y siguiente

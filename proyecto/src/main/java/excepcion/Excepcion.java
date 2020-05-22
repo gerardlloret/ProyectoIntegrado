@@ -23,6 +23,7 @@ public class Excepcion extends Exception {
     public static final int noHayNingunEquipo = 17;
     public static final int noHayPostulaciones = 18;
     public static final int noHasCreadoNingunaOferta = 19;
+    public static final int yatienesOfertaConEseNombre = 20;
            
     public Excepcion(int error) {
         super();
@@ -69,7 +70,9 @@ public class Excepcion extends Exception {
             case 18:
                 return "No te has postulado a ninguna oferta";
             case 19:
-                return "No has creado ninguna oferta";                
+                return "No has creado ninguna oferta";   
+            case 20:
+                return "Ya has creado una oferta con ese nombre"; 
         }
         return super.getMessage(); 
     }    

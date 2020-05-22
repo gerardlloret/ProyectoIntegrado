@@ -146,6 +146,9 @@ public class CrearOferta extends javax.swing.JDialog {
         try {
             Equipo equipo = Manager.bbdd.returnEquipo(Manager.getUsuario());
             Juego juego = Manager.bbdd.returnJuego(cbJuegos.getSelectedItem().toString());
+            if(Manager.bbdd.nombreOfertaEquipoExist(equipo.getIdequipo(), tfNombre.getText())){
+                throw new Excepcion(Excepcion.yatienesOfertaConEseNombre);
+            }
             Oferta o = new Oferta(equipo, juego,tfNombre.getText(),taDescripcion.getText(),Integer.parseInt(jsVacantes.getValue().toString()));
             Manager.bbdd.insertOferta(o);
             JOptionPane.showMessageDialog(this, "Se ha creado la oferta correctamente", "Info", JOptionPane.INFORMATION_MESSAGE);
