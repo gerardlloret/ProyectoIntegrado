@@ -676,5 +676,12 @@ public class DAO {
         st.executeUpdate(delete);
         st.close();
     }
+    //Metodo para borrar una oferta
+    public void deleteOferta(int idoferta) throws SQLException, Excepcion {
+        String delete = "delete from oferta where idoferta='" + idoferta + "'";
+        Statement st = conexion.createStatement();
+        st.executeUpdate(delete);
+        st.close();
+    }
     
 }
