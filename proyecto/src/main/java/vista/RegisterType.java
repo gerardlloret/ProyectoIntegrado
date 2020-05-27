@@ -70,12 +70,14 @@ public class RegisterType extends javax.swing.JDialog {
 
     private void btnJugadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugadorActionPerformed
         RegisterJugador registerJugador = new RegisterJugador(login, true);
+        registerJugador.setTitle("Registro Jugador");
         registerJugador.setLocationRelativeTo(null);
         registerJugador.setVisible(true);
     }//GEN-LAST:event_btnJugadorActionPerformed
 
     private void btnEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipoActionPerformed
         RegisterEquipo registerEquipo = new RegisterEquipo(login, true);
+        registerEquipo.setTitle("Registro Equipo");
         registerEquipo.setLocationRelativeTo(null);
         registerEquipo.setVisible(true);
     }//GEN-LAST:event_btnEquipoActionPerformed

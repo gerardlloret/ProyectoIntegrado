@@ -25,18 +25,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btnVerEquipos" max="32767" attributes="0"/>
-                  <Component id="btnVerJuegos" alignment="1" pref="173" max="32767" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="1" pref="173" max="32767" attributes="0"/>
-                      <Component id="btnLogOut" alignment="1" pref="173" max="32767" attributes="0"/>
-                      <Component id="btnPerfil" alignment="0" pref="173" max="32767" attributes="0"/>
-                      <Component id="btnVerPostulaciones" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnLogOut" max="32767" attributes="0"/>
+                  <Component id="btnPerfil" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnVerJuegos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnVerEquipos" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnVerPostulaciones" alignment="0" pref="238" max="32767" attributes="0"/>
+                  <Component id="jButton1" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="94" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="217" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,7 +45,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="14" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -57,7 +58,7 @@
               <Component id="btnPerfil" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnLogOut" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

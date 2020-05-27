@@ -164,6 +164,7 @@ public class EditarPerfilJugador extends javax.swing.JDialog {
     }
     
     public void modificarDatos(){
+        //Para modificar los datos comprobamos que todos tengan un formato correcto
         try {
             Jugador j = Manager.bbdd.returnJugador(Manager.getUsuario());
             if(!tfNombre.getText().equalsIgnoreCase(j.getNombre())){

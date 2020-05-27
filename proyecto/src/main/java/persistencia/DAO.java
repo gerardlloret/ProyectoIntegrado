@@ -46,6 +46,7 @@ public class DAO {
     //He dividido los metodos de esta clase en 5 bloques, EXIST, RETURNS, INSERTS, UPDATES y DELETES
     
     //BLOQUE 1: EXISTS
+    //Metodo que dependiendo del tipo pasado comprueba las credenciales para el login
     public boolean login(String nombre, String tipo, String password)throws SQLException{
         String select = "";
         if(tipo.equalsIgnoreCase("jugador")){

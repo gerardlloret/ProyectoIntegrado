@@ -181,6 +181,7 @@ public class EditarPerfilEquipo extends javax.swing.JDialog {
     }
     
     public void modificarDatos(){
+        //Para modificar los datos comprobamos que todos tengan un formato correcto
         try {
             Equipo e = Manager.bbdd.returnEquipo(Manager.getUsuario());
             if(!tfNombre.getText().equalsIgnoreCase(e.getNombre())){

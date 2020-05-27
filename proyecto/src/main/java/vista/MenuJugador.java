@@ -86,22 +86,23 @@ public class MenuJugador extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerJuegos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnVerEquipos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnVerJuegos, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                        .addComponent(btnVerPostulaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(217, Short.MAX_VALUE))
+                    .addComponent(btnVerPostulaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
@@ -114,7 +115,7 @@ public class MenuJugador extends javax.swing.JFrame {
                 .addComponent(btnPerfil)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,6 +129,7 @@ public class MenuJugador extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHayNingunaOferta);
             }
             VerOfertas verOfertas = new VerOfertas(this, true);
+            verOfertas.setTitle("Ofertas");
             verOfertas.setLocationRelativeTo(null);
             verOfertas.setVisible(true);
         }catch (SQLException|Excepcion|ParseException ex) {
@@ -144,6 +146,7 @@ public class MenuJugador extends javax.swing.JFrame {
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         PerfilJugador perfilJugador = new PerfilJugador(this, true);
+        perfilJugador.setTitle("Perfil");
         perfilJugador.setLocationRelativeTo(null);
         perfilJugador.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
@@ -156,6 +159,7 @@ public class MenuJugador extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHayNingunJuego);
             }
             VerJuegos verJuegos = new VerJuegos(this, true);
+            verJuegos.setTitle("Juegos");
             verJuegos.setLocationRelativeTo(null);
             verJuegos.setVisible(true);
         }catch (SQLException|Excepcion ex) {
@@ -171,6 +175,7 @@ public class MenuJugador extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHayNingunEquipo);
             }
             VerEquipos verEquipos = new VerEquipos(this, true);
+            verEquipos.setTitle("Equipos");
             verEquipos.setLocationRelativeTo(null);
             verEquipos.setVisible(true);
         }catch (SQLException|Excepcion|ParseException ex) {
@@ -185,6 +190,7 @@ public class MenuJugador extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHayPostulaciones);
             }
             VerPostulaciones verPostulaciones = new VerPostulaciones(this, true);
+            verPostulaciones.setTitle("Postulaciones");
             verPostulaciones.setLocationRelativeTo(null);
             verPostulaciones.setVisible(true);
         }catch (SQLException|Excepcion|ParseException ex) {

@@ -262,6 +262,7 @@ public class VerCandidatosOfertas extends javax.swing.JDialog {
         jlJuegos.setModel(model);
     }
     
+    //ModelList para la lista de juegos
     private DefaultListModel modelList(ArrayList<Juego> juegos){
         DefaultListModel model = new DefaultListModel<>();
         for (Juego j : juegos){

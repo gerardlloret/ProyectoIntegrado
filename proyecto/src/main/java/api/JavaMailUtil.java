@@ -14,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 
 public class JavaMailUtil {
     
+    //Metodo para mandar un email pasando el destinatario
     public static void sendMail(String recipient, String newPassword) throws MessagingException  {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
@@ -21,6 +22,7 @@ public class JavaMailUtil {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
         
+        //Credenciales
         String myAccountEmail = "gerardlloretep@gmail.com";
         String password = "tuPasswordAqui";
         

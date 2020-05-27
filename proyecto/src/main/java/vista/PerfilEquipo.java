@@ -151,6 +151,7 @@ public class PerfilEquipo extends javax.swing.JDialog {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         EditarPerfilEquipo editarPerfilEquipo = new EditarPerfilEquipo(menuEquipo, true);
+        editarPerfilEquipo.setTitle("Editar Perfil");
         editarPerfilEquipo.setLocationRelativeTo(null);
         editarPerfilEquipo.setVisible(true);
         showInfo();

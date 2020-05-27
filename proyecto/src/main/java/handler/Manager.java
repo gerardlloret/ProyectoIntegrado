@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import persistencia.DAO;
 
-
+//Clase que incluye metodos para la logica del programa y variable estatica de la base de datos para las consultas
 public class Manager {
     public static DAO bbdd;
     private static String usuario;
@@ -56,11 +56,13 @@ public class Manager {
         return sqlDate;
     }
     
+    //Recibe un date y retorna Srtring con formato yyyy-MM-dd
     public static Date SqlDateToDate(String sqlDate) throws ParseException{
         Date date=new SimpleDateFormat("yyyy-MM-dd").parse(sqlDate); 
         return date;
     }
     
+    //Metodo que comprueba si un email tiene un formato valido
     public static boolean emailValido(String email){
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher mather = pattern.matcher(email);
@@ -70,6 +72,7 @@ public class Manager {
         return false;
     }
     
+    //Metodo que genera una string de 10 caracteres aleatorios
     public static String generateRandomPassword() {
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 + "0123456789"

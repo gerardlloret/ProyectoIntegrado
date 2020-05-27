@@ -261,8 +261,10 @@ public class VerOfertas extends javax.swing.JDialog {
 
     private void lblNombreEquipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNombreEquipoMouseClicked
         try{
+            //Si pulsan en el nombre del equipo van a su detalle
             if(Manager.bbdd.equipoExist(lblNombreEquipo.getText())){
                 DetalleEquipo detalleEquipo = new DetalleEquipo(menuJugador, true, lblNombreEquipo.getText());
+                detalleEquipo.setTitle("Equipo");
                 detalleEquipo.setLocationRelativeTo(null);
                 detalleEquipo.setVisible(true);
             }
@@ -336,6 +338,7 @@ public class VerOfertas extends javax.swing.JDialog {
     }
     
     private void estadoBotonCandidatura(){
+        //Metodo que comprueba si el jugador ha presentado o no candidatura a esa oferta para decidir el estado del boton
         try {    
             Oferta oferta = ofertasSeleccionadas.get(posicion);
             Jugador jugador = Manager.bbdd.returnJugador(Manager.getUsuario());

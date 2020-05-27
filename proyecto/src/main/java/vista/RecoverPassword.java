@@ -31,7 +31,7 @@ public class RecoverPassword extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Introduce tu correo");
+        jLabel1.setText("Introduce tu correo,");
 
         btnEnviar.setText("Enviar");
         btnEnviar.addActionListener(new java.awt.event.ActionListener() {
@@ -40,7 +40,7 @@ public class RecoverPassword extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Y te enviaremos un nuevo Password");
+        jLabel2.setText("Y te enviaremos un nuevo Password:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,6 +74,7 @@ public class RecoverPassword extends javax.swing.JDialog {
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         try {
+            //Comprobamos que el correo exista
             String gmail = tfGmail.getText();
             String newPassword = Manager.generateRandomPassword();
             if(!Manager.emailValido(gmail)){
@@ -82,6 +83,7 @@ public class RecoverPassword extends javax.swing.JDialog {
             if(!Manager.bbdd.correoExist(gmail)){
                 throw new Excepcion(Excepcion.noExisteCorreo);
             }
+            //Seteamos el nuevo password y mandamos el correo
             if(Manager.bbdd.jugadorExistEmail(gmail)){
                 Manager.bbdd.updateJugadorPassword(newPassword, gmail);
             }else if(Manager.bbdd.equipoExistEmail(gmail)){

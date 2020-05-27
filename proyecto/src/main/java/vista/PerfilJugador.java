@@ -160,6 +160,7 @@ public class PerfilJugador extends javax.swing.JDialog {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         EditarPerfilJugador editarPerfilJugador = new EditarPerfilJugador(menuJugador, true);
+        editarPerfilJugador.setTitle("Editar Perfil");
         editarPerfilJugador.setLocationRelativeTo(null);
         editarPerfilJugador.setVisible(true);
         showInfo();
@@ -184,6 +185,7 @@ public class PerfilJugador extends javax.swing.JDialog {
     }
 
     private DefaultListModel modelList(ArrayList<Juego> juegos){
+        //Model List para poder mostrar la lista de los juegos del usuario
         DefaultListModel model = new DefaultListModel<>();
         for (Juego j : juegos){
             model.addElement(j.getNombre());

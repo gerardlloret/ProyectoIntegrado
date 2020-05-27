@@ -86,27 +86,25 @@ public class MenuEquipo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnVerCandidatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCrearOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBorrarOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVerJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 64, Short.MAX_VALUE))))
+                    .addComponent(btnBorrarOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCrearOferta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerCandidatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVerJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(btnCrearOferta)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCrearOferta, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnVerCandidatos)
                 .addGap(18, 18, 18)
@@ -125,6 +123,7 @@ public class MenuEquipo extends javax.swing.JFrame {
 
     private void btnCrearOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearOfertaActionPerformed
         CrearOferta crearOferta = new CrearOferta(this, true);
+        crearOferta.setTitle("Crear Oferta");
         crearOferta.setLocationRelativeTo(null);
         crearOferta.setVisible(true);
     }//GEN-LAST:event_btnCrearOfertaActionPerformed
@@ -138,6 +137,7 @@ public class MenuEquipo extends javax.swing.JFrame {
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         PerfilEquipo perfilEquipo = new PerfilEquipo(this, true);
+        perfilEquipo.setTitle("Perfil");
         perfilEquipo.setLocationRelativeTo(null);
         perfilEquipo.setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
@@ -150,6 +150,7 @@ public class MenuEquipo extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHayNingunJugador);
             }
             VerJugadores verJugadores = new VerJugadores(this, true);
+            verJugadores.setTitle("Jugadores");
             verJugadores.setLocationRelativeTo(null);
             verJugadores.setVisible(true);
         }catch (SQLException|Excepcion|ParseException ex) {
@@ -166,6 +167,7 @@ public class MenuEquipo extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHasCreadoNingunaOferta);
             }
             VerCandidatosOfertas verCandidatosOfertas = new VerCandidatosOfertas(this, true);
+            verCandidatosOfertas.setTitle("Candidatos");
             verCandidatosOfertas.setLocationRelativeTo(null);
             verCandidatosOfertas.setVisible(true);
         }catch (SQLException|Excepcion|ParseException ex) {
@@ -182,6 +184,7 @@ public class MenuEquipo extends javax.swing.JFrame {
                 throw new Excepcion(Excepcion.noHasCreadoNingunaOferta);
             }
             BorrarOferta borrarOferta = new BorrarOferta(this, true);
+            borrarOferta.setTitle("Borrar Oferta");
             borrarOferta.setLocationRelativeTo(null);
             borrarOferta.setVisible(true);
         }catch (SQLException|Excepcion|ParseException ex) {

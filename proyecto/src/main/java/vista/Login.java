@@ -109,6 +109,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         RegisterType registerType = new RegisterType(this, true);
+        registerType.setTitle("Tipo");
         registerType.setLocationRelativeTo(null);
         registerType.setVisible(true);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
@@ -127,6 +128,7 @@ public class Login extends javax.swing.JFrame {
             if(!Manager.bbdd.login(tfAlias.getText(), tipo, String.valueOf(jpPassword.getPassword()))){
                 throw new Excepcion(Excepcion.passwordIncorrecto);
             }
+            //Si las credenciales son correctas seteamos el usuario en el manager y abrimos el menu que toque
             Manager.setUsuario(tfAlias.getText());
             if(tipo.equalsIgnoreCase("jugador")){
                 abrirMenuJugador();
@@ -140,6 +142,7 @@ public class Login extends javax.swing.JFrame {
 
     private void lblPasswordRecoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPasswordRecoverMouseClicked
         RecoverPassword recoverPassword = new RecoverPassword(this, true);
+        recoverPassword.setTitle("Recover");
         recoverPassword.setLocationRelativeTo(null);
         recoverPassword.setVisible(true);
     }//GEN-LAST:event_lblPasswordRecoverMouseClicked
