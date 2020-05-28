@@ -24,6 +24,8 @@ public class Excepcion extends Exception {
     public static final int noHayPostulaciones = 18;
     public static final int noHasCreadoNingunaOferta = 19;
     public static final int yatienesOfertaConEseNombre = 20;
+    public static final int errorInserts = 21;
+    public static final int errorInsertsPaises = 22;
            
     public Excepcion(int error) {
         super();
@@ -73,6 +75,10 @@ public class Excepcion extends Exception {
                 return "No has creado ninguna oferta";   
             case 20:
                 return "Ya has creado una oferta con ese nombre"; 
+            case 21:
+                return "La base de datos siempre debe contener juegos, si sale este error es debido a que no se han realizado los inserts pertinentes";
+            case 22:
+                return "La base de datos siempre debe contener paises, si sale este error es debido a que no se han realizado los inserts pertinentes"; 
         }
         return super.getMessage(); 
     }    

@@ -1,5 +1,13 @@
 package vista;
 
+import excepcion.Excepcion;
+import handler.Manager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import modelo.Juego;
+import modelo.Pais;
+
 public class RegisterType extends javax.swing.JDialog {
 
     public java.awt.Frame login;
@@ -76,10 +84,18 @@ public class RegisterType extends javax.swing.JDialog {
     }//GEN-LAST:event_btnJugadorActionPerformed
 
     private void btnEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipoActionPerformed
-        RegisterEquipo registerEquipo = new RegisterEquipo(login, true);
-        registerEquipo.setTitle("Registro Equipo");
-        registerEquipo.setLocationRelativeTo(null);
-        registerEquipo.setVisible(true);
+        try{
+            ArrayList<Pais> paises = Manager.bbdd.returnPaises();
+            if(paises.isEmpty()){
+                throw new Excepcion(Excepcion.errorInsertsPaises);
+            }
+            RegisterEquipo registerEquipo = new RegisterEquipo(login, true);
+            registerEquipo.setTitle("Registro Equipo");
+            registerEquipo.setLocationRelativeTo(null);
+            registerEquipo.setVisible(true);
+        }catch (SQLException|Excepcion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnEquipoActionPerformed
 
     

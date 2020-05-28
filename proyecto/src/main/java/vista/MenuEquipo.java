@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.Equipo;
+import modelo.Juego;
 import modelo.Jugador;
 import modelo.Oferta;
 
@@ -122,10 +123,18 @@ public class MenuEquipo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearOfertaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearOfertaActionPerformed
-        CrearOferta crearOferta = new CrearOferta(this, true);
-        crearOferta.setTitle("Crear Oferta");
-        crearOferta.setLocationRelativeTo(null);
-        crearOferta.setVisible(true);
+        try{
+            ArrayList<Juego> juegos = Manager.bbdd.returnJuegos();
+            if(juegos.isEmpty()){
+                throw new Excepcion(Excepcion.errorInserts);
+            }
+            CrearOferta crearOferta = new CrearOferta(this, true);
+            crearOferta.setTitle("Crear Oferta");
+            crearOferta.setLocationRelativeTo(null);
+            crearOferta.setVisible(true);
+        }catch (SQLException|Excepcion ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCrearOfertaActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
