@@ -24,7 +24,7 @@ public class JavaMailUtil {
         
         //Credenciales
         String myAccountEmail = "gerardlloretep@gmail.com";
-        String password = "tuPasswordAqui";
+        String password = "";
         
         Session session = Session.getInstance(properties, new Authenticator(){           
             @Override
